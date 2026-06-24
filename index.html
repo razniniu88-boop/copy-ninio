@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>רז ניניו — קופירייטר</title>
+  <meta name="description" content="תיק עבודות של רז ניניו, קופירייטר מתל אביב. קורות חיים, תסריטים, פרסומות ותשדירי רדיו." />
+  <meta property="og:title" content="רז ניניו — קופירייטר" />
+  <meta property="og:description" content="כותב מודעות, תסריטים, וסליחות. הציצו בתיק." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111;
+      --white: #fafaf8;
+      --ink:   #1c1c1c;
+      --mid:   #555;
+      --light: #e8e6e0;
+      --accent:#c0392b;
+      --radius: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: var(--white);
+      border-bottom: 1px solid var(--light);
+    }
+    .topbar__logo {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .topbar__nav { display: flex; gap: 32px; }
+    .topbar__nav a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .topbar__nav a:hover { color: var(--ink); }
+    .lang-toggle {
+      background: none;
+      border: 1.5px solid var(--light);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--mid);
+      font-family: 'Heebo', sans-serif;
+      transition: all .2s;
+      letter-spacing: .08em;
+    }
+    .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .lang-toggle.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 48px 80px;
+    }
+    .hero__kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .hero__accent { color: var(--accent); }
+    .hero__small {
+      font-size: 0.55em;
+      font-family: 'Heebo', sans-serif;
+      font-weight: 400;
+      color: var(--mid);
+    }
+
+    /* ── הטקסט החדש מתחת לכותרת ── */
+    .hero__tagline {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--mid);
+      border-right: 3px solid var(--accent);
+      padding-right: 16px;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .hero__sub {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    .hero__cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    @keyframes float-btn {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(192,57,43,0.5), 0 8px 24px rgba(192,57,43,0.3); }
+      70%  { box-shadow: 0 0 0 14px rgba(192,57,43,0), 0 8px 24px rgba(192,57,43,0.3); }
+      100% { box-shadow: 0 0 0 0 rgba(192,57,43,0), 0 8px 24px rgba(192,57,43,0.3); }
+    }
+    @keyframes wiggle {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      15%     { transform: translateY(-6px) rotate(-3deg); }
+      30%     { transform: translateY(-6px) rotate(3deg); }
+      45%     { transform: translateY(-6px) rotate(-2deg); }
+      60%     { transform: translateY(-6px) rotate(2deg); }
+      75%     { transform: translateY(-6px) rotate(0deg); }
+    }
+    .btn--forbidden {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      z-index: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-decoration: none;
+      border: none;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      animation: float-btn 2.6s ease-in-out infinite, pulse-ring 2s ease-out infinite;
+      font-family: 'Heebo', sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .btn--forbidden:hover {
+      animation: wiggle .6s ease-in-out forwards, pulse-ring 2s ease-out infinite;
+      background: #a93226;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn--solid {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn--solid:hover { background: var(--accent); }
+    .btn--ghost {
+      border: 2px solid var(--ink);
+      color: var(--ink);
+    }
+    .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Section label ── */
+    .section__label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+    .section__label--light { color: rgba(255,255,255,0.55); }
+
+    /* ── About ── */
+    .about {
+      background: #f3f1ec;
+      padding: 80px 48px;
+    }
+    .about > * { max-width: 700px; margin-left: auto; margin-right: auto; display: block; }
+    .about__lead {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .about__body {
+      font-size: 1.05rem;
+      color: var(--mid);
+      line-height: 1.85;
+    }
+
+    /* ── Work ── */
+    .work {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .work__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .work__intro {
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .card:hover {
+      box-shadow: 0 14px 36px rgba(0,0,0,.13);
+      transform: translateY(-5px);
+      border-color: #cbc8bf;
+    }
+    .card__tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .card__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .card__desc {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+      padding: 8px 0;
+    }
+    .sub-item {
+      border: 1px solid var(--light);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow .2s, transform .2s;
+      text-align: center;
+    }
+    .sub-item:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .sub-item img {
+      width: 100%;
+      height: 110px;
+      object-fit: contain;
+      background: #f7f7f5;
+      padding: 16px;
+    }
+    .sub-item__label {
+      padding: 10px 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .script-body { font-size: 0.97rem; line-height: 1.85; color: var(--ink); }
+    .script-body p { margin-bottom: 14px; }
+    .script-body br {
+      display: block;
+      height: 0;
+      border-top: 1px dashed #dedad1;
+      margin: 16px 0;
+    }
+
+    .version-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .version-counter { font-size: 0.82rem; color: var(--mid); min-width: 36px; text-align: center; }
+    .nav-arrow {
+      background: none;
+      border: 1px solid var(--light);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--mid);
+      font-family: 'Heebo', sans-serif;
+      transition: border-color .15s, color .15s;
+    }
+    .nav-arrow:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+    .nav-arrow:disabled { opacity: 0.28; cursor: default; }
+    .back-btn {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: inline-block;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--light);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      color: var(--mid);
+      font-family: 'Heebo', sans-serif;
+      transition: color .15s, border-color .15s;
+    }
+    .back-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+    .version-picker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 32px 0;
+    }
+    .version-picker p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .version-btn {
+      width: 260px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--light);
+      background: var(--white);
+      cursor: pointer;
+      font-family: 'Heebo', sans-serif;
+      text-align: right;
+      transition: all .2s;
+    }
+    .version-btn:hover { border-color: var(--accent); }
+    .version-btn strong { display: block; font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+    .version-btn span { font-size: 0.82rem; color: var(--mid); }
+    .version-btn.solid { background: var(--ink); border-color: var(--ink); }
+    .version-btn.solid strong, .version-btn.solid span { color: var(--white); }
+    .version-btn.accent { background: var(--accent); border-color: var(--accent); }
+    .version-btn.accent strong, .version-btn.accent span { color: var(--white); }
+
+    .storyboard-wrap {
+      width: 100%;
+      height: 65vh;
+      border: none;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      background: var(--ink);
+      color: var(--white);
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .contact__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 36px;
+      line-height: 1.3;
+    }
+    .contact__list {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .contact__list a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color .2s;
+    }
+    .contact__list a:hover { color: var(--white); }
+    .contact__foot {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── Modal ── */
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(18px) scale(.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes backdropIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+    }
+    .modal.open { display: flex; align-items: center; justify-content: center; }
+    .modal.open .modal__backdrop { animation: backdropIn .2s ease-out; }
+    .modal.open .modal__panel    { animation: panelIn .25s cubic-bezier(.22,.68,0,1.2); }
+    .modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      cursor: pointer;
+    }
+    .modal__panel {
+      position: relative;
+      background: var(--white);
+      border-radius: 14px;
+      width: min(820px, 96vw);
+      max-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal__body img {
+      max-width: 100%;
+      max-height: calc(88vh - 80px);
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    .modal__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--light);
+    }
+    .modal__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+    .modal__close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--mid);
+      line-height: 1;
+    }
+    .modal__body {
+      padding: 24px;
+      overflow-y: auto;
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 14px 20px; }
+      .hero, .work { padding: 60px 20px; }
+      .about { padding: 60px 20px; }
+      .contact { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="#top" class="topbar__logo">רז ניניו</a>
+    <nav class="topbar__nav">
+      <a href="#about">מי אני</a>
+      <a href="#work">התיק</a>
+      <a href="#contact">דברו איתי</a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+        🌐 <span id="langLabel">EN</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero__kicker">קופירייטר · תל אביב</p>
+      <h1 class="hero__title">
+        אני כותב דברים<br />
+        שגורמים לאנשים<br />
+        <span class="hero__accent">לקנות. לצחוק. לבכות.</span><br />
+        <span class="hero__small">(לרוב בסדר הזה.)</span>
+      </h1>
+
+      <p class="hero__tagline">
+        רז ניניו, בן 26, קופירייטר בהתהוות, אמן בנפש ועצלן בראש,<br />
+        פיוז'ן של תל אביב וחולון עם נגיעות דרומיות.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#work" class="btn btn--solid">לתיק העבודות</a>
+        <a href="#contact" class="btn btn--ghost">בואו נדבר</a>
+      </div>
+    </section>
+
+    <a class="btn--forbidden" href="https://wa.me/972503444449?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%96,%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%94%D7%A2%D7%A1%D7%99%D7%A7%20%D7%90%D7%95%D7%AA%D7%9A" target="_blank" rel="noopener">
+      🚫 אל תלחץ כאן
+    </a>
+
+    <!-- מי אני -->
+    <section id="about" class="about">
+      <span class="section__label">/ 01 — מי אני</span>
+      <p class="about__lead">
+        את הגרסא הטובה לקטע הזה בטח כבר מחקתי.
+      </p>
+      <p class="about__body">
+        אבל נזרום עם זאת. כמו שכבתי — רז, בן 26, גר בתל אביב, עם זיקה מאוד גדולה לעולם
+        הכתיבה והתוכן. רעב מאוד גדול להצליח בתחום ולהגיד לאמא שלי שאני סוף סוף מקבל
+        סיבוס ותלושים לחג שהם לא 150 שקלים ליוחננוף. ראש יצירתי פורה וכל הגשעפט הזה.
+        חוטא לכתוב סטנד אפ לפעמים. וזהו, אמרתי מספיק.
+      </p>
+    </section>
+
+    <!-- התיק -->
+    <section id="work" class="work">
+      <span class="section__label">/ 02 — התיק</span>
+      <h2 class="work__title">לחצו. זה נפתח.</h2>
+      <div id="cards" class="cards"></div>
+    </section>
+
+  </main>
+
+  <!-- צרו קשר -->
+  <footer id="contact" class="contact">
+    <span class="section__label section__label--light">/ 03 — דברו איתי</span>
+    <h2 class="contact__title">רוצים לעבוד יחד?<br />או סתם להגיד שצחקתם?</h2>
+    <ul class="contact__list">
+      <li><a href="mailto:raz.niniu88@gmail.com">raz.niniu88@gmail.com</a></li>
+      <li><a href="https://wa.me/972503444449?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%96,%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%94%D7%A2%D7%A1%D7%99%D7%A7%20%D7%90%D7%95%D7%AA%D7%9A" target="_blank" rel="noopener">050-344-4449</a></li>
+      <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <p class="contact__foot">רז ניניו · קופירייטר · נכתב, נמחק, ונכתב שוב, בתל אביב.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="document">
+      <div class="modal__head">
+        <h3 class="modal__title" id="modalTitle"></h3>
+        <button class="modal__close" data-close aria-label="סגירה">×</button>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const WORKS = [
+      {
+        tag: 'קו"ח',
+        title: 'קו"ח',
+        desc: 'כי גם קורות חיים זה קופי. ואולי הכי חשוב שיש.',
+        pdfUrl: 'cv.pdf'
+      },
+      {
+        tag: 'תסריטים',
+        title: 'תסריטים',
+        desc: 'מה שקורה על המסך מתחיל תמיד בדף ריק.',
+        isFolder: true,
+        items: [
+          {
+            img: 'https://rabbitlogo.com/wp-content/uploads/2025/06/panasonic-1.jpg',
+            label: 'פרסומת פנסוניק 103"',
+            shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>גבר אמיד מזמין טלוויזיה ענקית כי הוא היה עני, מקבל פלאשבק לילדות שהוצאה לפועל לקחו לו את הטלוויזיה ועכשיו הוא יכול להרשות לעצמו טלוויזיה ענקית ויפה.</p>
+</div>`,
+            body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:16px;text-align:center;">פנסוניק משיקים טלוויזיה 103 אינץ׳ — מרגש</h3>
+<p><strong>שוט ראשוני:</strong> רואים בית מפואר בזווית על, משאית נכנסת ברוורס לתוך הבית. גבר עם מראה אמיד מכוון את המובילים. יורד אליו אחד המובילים, נראה ערס ואומר לו:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"בואנה חתיכת טלוויזיה הבאת פה, מה אתה צריך כזה גודל? מה אתה עיוור?"</blockquote>
+<p>המוביל מסתכל עליו ומחכה לתשובה בפנים מטומטמות. הבחור האמיד לא עונה, ומסתכל על שני המובילים האחרים מורידים את הטלוויזיה (רואים שרשום 103 אינץ׳). קלוז אפ לפנים שלו — העיניים עצובות. לאט לאט התמונה מטשטשת למעין פלאשבק.</p>
+<br/>
+<p><strong>שוט שני — פלאשבק:</strong> התמונה אפורה, שיר עצוב ברקע, הכל בסלואו מושן. קלוז אפ על אותו בחור — רק שהפעם כילד, עם אותן עיניים עצובות. קלוז אאוט — ברקע בית שבור, אמא בוכה. המצלמה מתהפכת: הילד מסתכל על אבא שלו רב עם שני גובים מהוצאה לפועל שלוקחים להם את הטלוויזיה מהסלון. האבא נאבק בהם, אחד הגובים מעיף אותו — הכל טראגי. חוזרים לקלוז אפ על עיני הילד.</p>
+<br/>
+<p><strong>שוט שלישי:</strong> חוזרים לעיניים של אותו בחור, קצת קלוז אאוט — רואים את המוביל הערס מסתכל עליו ועדיין מחכה לתשובה. הבחור עונה לו באדישות:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"צריך צריך." קט.</blockquote>
+<p>שוט של הבחור בתוך הבית מדליק את הטלוויזיה. התמונה מטשטשת ודבר המפרסם:</p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"פנסוניק, מסכים עם סיפור חיים."</p>`,
+            storyboardImg: 'storyboard-panasonic.jpeg'
+          },
+          {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg',
+            label: 'חניה ב-AI',
+            shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>נשים לא יודעות לחנות, אז גבר קונה לאשתו רכב שאפשר לחנות בו ב-AI בלחיצת כפתור בלי בעיה — וגם את זה היא מצליחה לדפוק.</p>
+<br/>
+<p style="color:#888;font-size:1rem;font-family:'Heebo',sans-serif;">המציג אינו שוביניסט.</p>
+<br/>
+<p style="color:#c0392b;font-weight:700;font-size:1.05rem;">"פולקסווגן בחניית AI בלחיצת כפתור, לא על הכל נוכל לשלוט."</p>
+</div>`,
+            body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:16px;text-align:center;">פולקסווגן — חניית AI בלחיצת כפתור</h3>
+<p><strong>סצנה 1:</strong> גבר מכוון את בת זוגו לחנייה במקביל. היא מסתבכת ומסתבכת — ודופקת את האוטו.</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"סליחה מאמי!"</blockquote>
+<p>המצלמה אליו — פרצוף מאוכזב.</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא נורא מאמי, הכל בסדר."</blockquote>
+<br/>
+<p><strong>סצנה 2:</strong> שניהם בתוך הרכב, הוא מדריך אותה לאט לאט:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"יופי מאמי, עכשיו לסובב את כל ההגה ימינה וללחוץ חלש על הגז."</blockquote>
+<p>היא לוחצת — ושוב דופקת. "סליחה מאמי!" קלוז אפ עליו, ידיים על הפנים:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא נורא מאמי, הכל בסדר."</blockquote>
+<br/>
+<p><strong>סצנה 3:</strong> הוא בבית שוטף כלים. לא רואים אותה — רק שומעים רעש של רכב מתנגש, ואז:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"סליחה מאמי!"</blockquote>
+<p>הוא, בלי להסתובב, לוחש לעצמו:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא נורא מאמי, הכל בסדר..."</blockquote>
+<br/>
+<p><strong>שוט אחרון:</strong> הוא מראה לה את הרכב החדש — פולקסווגן. מדגים את פונקציית החניה האוטומטית בלחיצת כפתור. היא מבסוטית, לוחצת — הרכב מחנה לבד. מרוב שמחה היא מפילה את השלט מהיד. <strong>הרכב דופק את עצמו.</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"סליחה מאמי!"</blockquote>
+<p>הוא, פנים מאוכזבות:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא נורא מאמי, הכל בסדר."</blockquote>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"פולקסווגן בחניית AI בלחיצת כפתור, לא על הכל נוכל לשלוט."</p>`,
+            storyboardImg: 'storyboard-vw.jpeg'
+          },
+          {
+            img: 'https://www.gov.il/BlobFolder/generalpage/criminal-sport-violence/he/file_images_football-red-ticket.jpg',
+            label: 'אלימות במגרשים',
+            shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>משחק בין הפועל לביתר. אוהדי ביתר — באופן מפתיע — מתחילים עם חזיזים ואלימות. לאט לאט הקהל נעלם: הורים, ילדים, וגם השדרן.</p>
+<br/>
+<p style="color:#c0392b;font-weight:700;font-size:1.05rem;">"אלימות ביציע משאירה את הכדורגל לבד. לא מכילים, קמים והולכים."</p>
+</div>`,
+            body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">קמפיין אלימות במגרשים</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">תובנה: הדבר שהכי מפחיד אוהדים פנאטיים — זה קרחות ביציע.</p>
+<p><strong>ויזואל:</strong> מתחיל באיצטדיון מלא — שירים, אוהדים, רעש קהל. שריקת פתיחה. השדרן יורם ארבל:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"ובכן חברים, משחק העונה החל, יוצאים לדרך."</blockquote>
+<p>מיד לאחר מכן — פריים של יד זורקת חזיז אל המגרש. המצלמה עוברת רוחבית על כל האיצטדיון — ומתחילים לראות מקומות ריקים.</p>
+<br/>
+<p>המשחק ממשיך. שחקנים נלחמים על כדור — פורצת קטטה בין אוהדים, שנייה וחצי. שוב שוט רוחבי: אנשים הולכים.</p>
+<br/>
+<p><strong>Money shot:</strong> שוט ספציפי של אבא שר עם הילד שלו — לאט לאט הילד מתפייד. ואחריו האבא.</p>
+<br/>
+<p>האיצטדיון כמעט ריק. האלימות ממשיכה. השדרן:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"ובכן חברים, גם אני לא מוכן לשאת דבר שכזה."</blockquote>
+<p>הוא קם והולך.</p>
+<br/>
+<p>המשחק עדיין נמשך. קומץ קטן של אוהדים נשאר. שירים נשמעים בקטנה — בעיקר עצוב. ויזואל עצוב לכל אוהד כדורגל.</p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"אלימות ביציע משאירה את הכדורגל לבד. לא מכילים, קמים והולכים."</p>`,
+            storyboardImg: 'storyboard-violence.jpeg'
+          },
+          {
+            img: 'https://www.bdicode.co.il/wp-content/uploads/2025/12/bank-leumi_heb-logo_2025.jpg',
+            label: 'לאומי יאנג',
+            videoUrl: 'video-leumi.mp4',
+            shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>הורים מביאים לילד כרטיס אשראי, מפחדים מההשלכות — ובסוף הילד שלהם נהייה יותר מחושב כלכלית מהם ואף קמצן אבו קומונה.</p>
+<br/>
+<p style="color:#888;font-size:1rem;font-family:'Heebo',sans-serif;">לא רחוק מהמציאות ההזויה שלנו.</p>
+<br/>
+<p style="color:#c0392b;font-weight:700;font-size:1.05rem;">"לאומי יאנג, כרטיס אשראי נטען לילדים טוב,... הם כבר לא כל כך ילדים."</p>
+</div>`,
+            body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:16px;text-align:center;">לאומי יאנג</h3>
+<p><strong>ויזואל:</strong> משפחה בסלון — אמא, אבא, ואביתר (14). ההורים מביאים לאביתר כרטיס אשראי שרשום עליו יאנג:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"הגיע הזמן חמוד, אל תתפרע."</blockquote>
+<p>אביתר מחייך, אומר תודה. קאט.</p>
+<br/>
+<p><strong>ויזואל:</strong> ההורים במיטה, מדברים ביניהם:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">אמא: "מקווה שלא עשינו טעות."<br/>אבא: "בגילו הייתי מבזבז בלי הכרה, מקסימום נבטל."</blockquote>
+<p>קאט.</p>
+<br/>
+<p><strong>ויזואל:</strong> הם בבית, מתארגנים לצאת. האמא:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"יאללה חברים, אני מזמינה לנו מונית."</blockquote>
+<p>אביתר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"למה מונית? זה די קרוב, אפשר ללכת ברגל."</blockquote>
+<p>הם מסתכלים עליו בשוק, עונים בגמגום: "נכון... נכון חמוד, אתה צודק, נלך ברגל." קאט.</p>
+<br/>
+<p><strong>ויזואל:</strong> בית קפה. מקבלים חשבון. האבא ניגש לקחת — יד של אביתר מקדימה אותו, ברצינות מוחלטת והתנשאות קלה:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"מזה, יש פה טעות — לא הזמנו סלט."<br/>מלצר: "אוי, טעות שלי, סליחה."<br/>אביתר: "ותפצל."<br/>מלצר בפליאה: "סבבה."</blockquote>
+<p>ההורים מסתכלים אחד על השני בשוק. קאט.</p>
+<br/>
+<p><strong>ויזואל:</strong> ההורים במיטה:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">אבא: "יצרנו מפלצת."<br/>אמא: "הוא ביטל לי את הנטפליקס, אמר שאני בקושי צופה."</blockquote>
+<p>פתאום מהרקע — אביתר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"מזה, אור דלוק במטבח?! מה, חשמל גדל על העצים ולא ידעתי?!"</blockquote>
+<p>ההורים — מבט מפוחד. קאט.</p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"לאומי יאנג, כרטיס אשראי נטען לילדים טוב,... הם כבר לא כל כך ילדים."</p>
+<br/>
+<p><strong>סגיר:</strong> ההורים יוצאים מהבית ואומרים ביי לאביתר. אביתר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא לחזור לי מאוחר."</blockquote>
+<p style="text-align:center;font-weight:700;">ההורים בשוק. סוף.</p>`
+          },
+          {
+            img: 'https://www.yachin.co.il/wp-content/uploads/Logo-in-circle.png',
+            label: 'פרסומת יכיני שעועית',
+            versions: [
+              {
+                label: 'גרסה 1 — הכיסא',
+                sublabel: 'נאד? זה לא מה שחשבתם',
+                storyboardImg: 'storyboard-yachin-1.jpeg',
+                body: `<p><strong>גבר יושב במשרד</strong> ויוצא לארוחת הצהריים. מגיע אל המטבחון במשרד, מוציא לו קופסה שהוא הביא מהבית וקופסאת שעועית. רואים אותו אוכל בכיף ונהנה. מסיים את האוכל וחוזר לכיסא שלו.</p><br/>
+<p>איך שהוא מתיישב — <strong>רעש של נאד</strong>. הוא מובך, לא מבין מה קורה. כולם מסתכלים עליו וצוחקים. פתאום הוא קם מהכיסא והולך — <strong>והכיסא ממשיך להסתובב ואותו רעש של נאד נשמע</strong>. מבינים שזה מהכיסא בכלל. קאט.</p>
+<br/><p style="text-align:center;font-weight:700;color:#c0392b;">"השעועית של יכיני, תשכחו מהסטיגמות"</p>`
+              },
+              {
+                label: 'גרסה 2 — המעלית',
+                sublabel: 'החתול הוא הגיבור',
+                storyboardImg: 'storyboard-yachin-2.jpeg',
+                body: `<p>אותו שוט — גם אוכל צהריים, גם עם שעועית. הוא במעלית יורד עם הרבה אנשים ופתאום <strong>יש רעש חזק של גרגור מהבטן</strong>. כולם מסתכלים עליו והוא שוב מובך, מסתכל אל הבטן שלו, מבולבל — <strong>מסתכל ימינה שמאלה ושולח מבטים של "זה לא אני"</strong>.</p><br/>
+<p>יוצאים מהמעלית. <strong>מישהו יוצא אחרון עם חתול על הידיים</strong> — הוא עוצר, החתול מסתכל עליו ומשחרר גרגור בדיוק כמו ששמעו, וכולם הבינו שחשבו שזה מהבטן של אותו בחור. קאט.</p>
+<br/><p style="text-align:center;font-weight:700;color:#c0392b;">"השעועית של יכיני, תשכחו מהסטיגמות"</p>`
+              },
+              {
+                label: 'גרסה 3 — השירותים',
+                sublabel: 'ספוילר: הוא סתם עושה כושר',
+                storyboardImg: 'storyboard-yachin-3.jpeg',
+                body: `<p>אותו שוט של דמות אוכלת את השעועית לארוחת צהריים. אותה דמות נראית <strong>מניחה את הצלחות בכיור וניגשת לשירותים</strong>. המצלמה מלווה את הדמות — ורואים את <strong>כל המשרד רואה אותו ניגש לשירותים</strong>.</p><br/>
+<p>נשמע רעש כמו של מישהו שדופק חירבון עצבני. לאט לאט <strong>המשרד מתקבץ סביב השירותים</strong> והצרחות מתגברות.</p><br/>
+<p>שוט אל תוך השירותים — <strong>הוא בכלל מתאמן, עושה בנץ׳</strong>. משם מגיעות הצרחות. קאט.</p>
+<br/><p style="text-align:center;font-weight:700;color:#c0392b;">"השעועית של יכיני, תשכחו מהסטיגמות"</p>`
+              }
+            ]
+          }
+        ]
+      },
+      {
+        tag: 'פרינטים',
+        title: 'פרינטים',
+        desc: 'מודעות שאפשר להדביק על קיר. ועדיין להיות גאה.',
+        isFolder: true,
+        items: [
+          {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/DHL_Logo.svg/1280px-DHL_Logo.svg.png',
+            label: 'DHL',
+            intro: 'DHL רוצים להבהיר כמה המשלוחים שלהם מהירים.',
+            versions: [
+              { label: 'אופציה 1', sublabel: 'פרינט ראשון', printImg: 'print-dhl-1.jpeg' },
+              { label: 'אופציה 2', sublabel: 'פרינט שני',   printImg: 'print-dhl-2.jpeg' },
+              { label: 'אופציה 3', sublabel: 'פרינט שלישי', printImg: 'print-dhl-3.jpeg' }
+            ]
+          },
+          {
+            img: 'logo-otrivin.png',
+            label: 'אוטריווין',
+            body: `<p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:18px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;">אוטריווין רוצים להבהיר שהם משתמשים ב-100% מי ים.</p><img src="print-otrivin.jpeg" style="border-radius:8px;" alt="פרינט אוטריווין" />`
+          },
+          {
+            img: 'logo-elite.png',
+            label: 'עלית',
+            body: `<p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:18px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;">עלית רוצה לפרסם קפה שחור ללא קפאין שטועם ממש כמו הרגיל.</p><img src="print-elite.jpeg" style="border-radius:8px;" alt="פרינט עלית" />`
+          },
+          {
+            img: 'logo-tabasco.png',
+            label: 'טבסקו',
+            body: `<p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:18px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;">טבסקו רוצה להראות כמה הרוטב שלה חריף.</p><img src="print-tabasco.jpeg" style="border-radius:8px;" alt="פרינט טבסקו" />`
+          }
+        ]
+      },
+      {
+        tag: 'רדיו',
+        title: 'רדיו',
+        desc: 'שלושים שניות. בלי תמונה. רק מילים.',
+        body: 'תוכן העבודה יוצג כאן.'
+      },
+      {
+        tag: '❤️ vs המרצה',
+        title: 'דברים שאני אהבתי והמרצה שלי לא',
+        desc: 'ספוילר: אני עדיין חושב שצדקתי.',
+        isFolder: true,
+        items: [
+          {
+            img: 'https://hakole-market.co.il/wp-content/uploads/מלפפונים-2.jpg',
+            label: 'חמוצי אדם',
+            intro: `במשימה זאת התבקשנו לייצר מותג מ-אפס, במקרה הזה זה היה לחמוצים. התובנה עמדה על הסלנג הישראלי "יאללה לך תעשה חמוצים" — ביטוי שמשתמשים בו בוויכוח כדי לזלזל בבן אדם וגם קצת בשביל הצחוק, הצגתי את זה בשני זוויות שונות וזה מה שיצא.`,
+            versions: [
+              {
+                label: 'אופציה 1 — הלכנו ועשינו חמוצים',
+                sublabel: 'כשאומרים לך ללכת — הולכים',
+                shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>אמרו למישהו ללכת לעשות חמוצים, מה שגרם לו באמת לעשות את זה ולחזור עם חמוצים אחו שרמ*ה.</p>
+<br/>
+<p style="color:#c0392b;font-weight:700;font-size:1.05rem;">"חדש על המדפים — חמוצי אדם. עושים חמוצים."</p>
+</div>`,
+                body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">אופציה 1 — הלכנו ועשינו חמוצים</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">תובנה: "יאללה לך תעשה חמוצים" — מה אם מישהו באמת היה הולך?</p>
+<p><strong>פתיחה:</strong> חבורת חברים יושבים בבית, צחוקים ודיבורים באוויר. המצלמה מגיעה לאחד מהם — פורץ ויכוח חצי הומוריסטי חצי רציני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"תשמע אדם אתה גנוב אה, אין לך מושג על מה אתה מדבר"</blockquote>
+<p><strong>אדם</strong> — בחור צעיר עם משקפיים, נראה חנון, "חמוץ":</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לא ואתה יותר טוב יא גולם"</blockquote>
+<p><strong>החבר:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"תשחרר תשחרר אותי, יאללה לך תעשה חמוצים"</blockquote>
+<p>אדם קם בדרמטיות, מסתכל על כולם. החבורה שואלת בלחש: "מה יש לו זה?" — ואדם עוזב.</p>
+<br/>
+<p><strong>מונטאז׳:</strong> אדם מגיע הביתה וחוקר כל הלילה במחשב. רושם לעצמו דברים. קונה כרטיסי טיסה. מגיע למקום בחו"ל, פוגש מישהו שמראה לו שדות מלפפונים ולוחצים ידיים. חוזר לארץ — מתחיל בניסויים כימיים בחלוק לבן, מפיפיטות ודוגמיות. טועם. מנסה שוב. צנטריפוגות. עובד ימים כלילות. ואז — אאוריקה. הוא מצא נוסחה. הוא מחייך לעצמו.</p>
+<br/>
+<p><strong>קאט.</strong> החבורה יושבת שוב. פתאום אדם נכנס:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"מה זה אדם איפה היית לאן נעלמת כל כך הרבה זמן, אתה בטוב?"</blockquote>
+<p>אדם מסתכל עליהם ומניח על השולחן <strong>צנצנת מלפפונים חמוצים עם המיתוג "חמוצי אדם"</strong>.</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"בבקשה, חמוצים."</blockquote>
+<p><strong>החבורה:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"תגיד מה מה אתה גנוב?"</blockquote>
+<p><strong>קאט.</strong></p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"חדש על המדפים — חמוצי אדם. עושים חמוצים."</p>
+<br/>
+<p><strong>סגיר:</strong> החבורה יושבת ומנשנשת את החמוצים. פורץ ויכוחון, ומישהו אומר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"תשמע אתה דפוק, לך לך תשן על האף"</blockquote>
+<p>אדם מסתכל בפרצוף דרמטי שוב. <strong>סוף.</strong></p>`,
+                printImg: 'print-adam-1.jpeg'
+              },
+              {
+                label: 'אופציה 2 — לא כל אחד יכול לעשות חמוצים',
+                sublabel: 'כשאתה אוסף את מיטבי החמוצים בעיר',
+                shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
+<p>אספו את מיטבי החמוצים בעיר כדי לייצר חמוצים אחו שרמ*ה.</p>
+<br/>
+<p style="color:#c0392b;font-weight:700;font-size:1.05rem;">"חדש על המדף — חמוצי אדם. לא כל אחד יכול לעשות חמוצים."</p>
+</div>`,
+                body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">אופציה 2 — לא כל אחד יכול לעשות חמוצים</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">תובנה: "חמוץ" — האשכנזי השמאלני המעצבן. מה אם אספנו את כולם יחד?</p>
+<p><strong>סצנה 1 — הפארק:</strong> אישה מטיילת עם לברדור ידידותי בשביל. אדם עם משקפיים, "חמוץ" כזה, עובר מולה:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אה לפי מה שידוע לי החוק אומר לשים מחסום פה לכלבים כאלה"</blockquote>
+<p>הבחורה בפליאה: "מה?" — אדם ממשיך ללכת. זום עליו ועוד ועוד עד שמגיע למעבר חצייה — ולפתע מגיעה מסחרית <strong>וחוטפת אותו</strong>. קאט.</p>
+<br/>
+<p><strong>סצנה 2 — הסופרמרקט:</strong> בחור אשכנזי לבן בתור בקופה. אישה מאחוריו, ממהרת, מחזיקה פריט אחד:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"יש מצב לעקוף רגע? אני פשוט ממהרת וצריכה רק את זה"</blockquote>
+<p><strong>הבחור החמוץ:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אהה נראה לי שבשביל זה יש תור לא?"</blockquote>
+<p>הוא משלם ויוצא מהחנות. זום אליו — ושוב מסחרית חוטפת. קאט.</p>
+<br/>
+<p><strong>מונטאז׳ חטיפות:</strong> עוד ועוד — גברים, נשים, כולם עם אותו מאפיין. קאט.</p>
+<br/>
+<p><strong>חדר חשוך.</strong> האור נדלק. חדר מלא "חמוצים" — מבולבלים, לא מבינים איפה הם. ואז נכנס <strong>אדם</strong>:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"שלום חברים, אני אדם ואתם בטח שואלים את עצמכם מה אתם עושים פה — אז אני שמח להודיע לכם שנבחרתם בקפידה רבה."</blockquote>
+<p>אחד החמוצים, בהערת צד:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"נבחרנו למה?"</blockquote>
+<p>אדם, קלוז אפ דרמטי לפנים:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"לעשות חמוצים."</blockquote>
+<br/>
+<p><strong>מונטאז׳ המעבדה:</strong> ניסויים כימיים, ריצות, שעות לימוד, פיצוצים. הערות חמוצות ברקע: "אוי זה חמוץ מידי!" — "אין דבר כזה חמוץ מידי!" ולבסוף — כמו מזוודה עם עשן נפתחת — אדם מוציא <strong>צנצנת זכוכית של מלפפונים חמוצים</strong>:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"נראה לי שעשינו את זה חברה."</blockquote>
+<p><strong>קאט.</strong></p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"חדש על המדף — חמוצי אדם. לא כל אחד יכול לעשות חמוצים."</p>`,
+                printImg: 'print-adam-2.jpeg'
+              }
+            ]
+          },
+          {
+            img: 'logo-7sec.png',
+            label: 'דבר מפרסם ב-7 שניות',
+            isFolder: true,
+            intro: 'התבקשנו לעשות תסריטים שדבר המפרסם נאמר ב-7 שניות הראשונות של הפרסומת ואחריה אללה באבאללה כמו שאומרים המרוקנרים.',
+            items: [
+              {
+                img: 'logo-ikea.png',
+                label: 'איקאה ירושלים',
+                body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">איקאה פותחת סניף ראשון בירושלים</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: "איקאה פותחת סניף בירושלים, אנחנו יודעים שחיכיתם"</p>
+<p><strong>זוג חברים הולכים יחד</strong> ואחד אומר פתאום לשני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"בואנה מה זה פתחו איקאה בירושלים? ממתי זה פתוח"</blockquote>
+<p>החבר השני מגיב:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"וואללה לא יודע זה נראה די חד..."</blockquote>
+<p>פתאום הם שומעים רעש ורואים <strong>המון של אנשים רצים רדופי אמוק</strong> אל כיוון הסניף. הם מסתכלים אחד אל השני, צורחים, ורצים אל הסניף כדי לברוח מההמון.</p>
+<br/>
+<p>מוזיקת אופרה מתחילה. הכל קורה בסלואו מושן. רואים אותם מתחילים לברוח ורצים לתוך הסניף, וההמון שוטף את המחלקות. <strong>המצלמה מידי פעם חוזרת לפרצוף שלהם</strong> — צורחים, רואים את ההמון שוטף מחלקה אחרת, <strong>בלאגן בקופות, כאוס, רהיטים באוויר.</strong></p>
+<p>המצלמה חוזרת אליהם עד שהם מגיעים למקום כמו יציאה.</p>
+<br/>
+<p style="text-align:center;font-size:1.1rem;font-weight:700;color:#1c1c1c;">"איקאה פותחת סניף בירושלים, אנחנו יודעים שחיכיתם"</p>
+<br/>
+<p><strong>סגיר —</strong> הם ממשיכים ללכת. פתאום חבר אומר לשני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"בואנה מה זה פתחו פה קניון חדש?"</blockquote>
+<p>רעש של המון רץ. <strong>סוף.</strong></p>`
+              },
+              {
+                img: 'https://upload.wikimedia.org/wikipedia/he/thumb/5/5a/Wissotzky_Tea_Logo_Hebrew.svg/960px-Wissotzky_Tea_Logo_Hebrew.svg.png',
+                label: 'ויסוצקי',
+                body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">ויסוצקי רוצה שאנשים יחליפו כוס קפה אחת ביום בכוס תה</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: לוגו ויסוצקי. סוף.</p>
+<p><strong>קלוז אפ</strong> על פרצוף של בן אדם רואה סטורי בפלאפון. נשמע מהפלאפון קריין שאומר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"ויסוצקי ממליצה להחליף כוס קפה אחת ביום בכוס תה"</blockquote>
+<p>המצלמה עדיין מאוד קרובה לפרצוף של הגבר — רואים רק את הפרצוף שלו. הגבר מתחיל במעין <strong>מונולוג עצבני ולועג:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"ויסוצקי רוצה שתחליפו לכוס תה אחת ביום <em>(בקול לועג ומזלזל)</em> יאללה כל אחד נהייה לי תזונאי חושבים שיגידו לי מה בריא לי ומה לא בריא לי"</blockquote>
+<p>המצלמה לאט לאט עושה <strong>זום אאוט</strong> תוך כדי המונולוג:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אני יודע טוב מאוד מה בריא לי"</blockquote>
+<p>המצלמה ממשיכה לעשות זום אאוט — רואים <strong>גבר שמן בלי חולצה, שעיר, יושב על ספה מסריחה:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"כל אחד חושב יפתח אינסטגרם יגיד איזה משהו ואני צריך לעשות אחריו"</blockquote>
+<p>המצלמה ממשיכה לעשות זום אאוט — <strong>שולחן מלא בכוסות קפה שחור, בירות, פיצה עם עובש:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אל תשתה את זה אל תאכל את זה, כאילו מה כוס תה אחת תעשה לי כבר ביום"</blockquote>
+<p>עוד זום אאוט — <strong>בית הרוס, חדר חשוך, טלוויזיה קטנה דולקת, הכל ערירי וגלמוד:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אם תעשה ככה יקרה לך ככה ואם לא תעשה את זה יקרה לך ככה"</blockquote>
+<p>התמונה לאט לאט מטשטשת — נשמע שהוא ממשיך לרטון ולכעוס אבל כבר לא שומעים אותו. <strong>לוגו ויסוצקי. סוף.</strong></p>`
+              },
+              {
+                img: 'https://www.gov.il/BlobFolder/generalpage/pic/he/SemelDatot.png',
+                label: 'משרד הדתות',
+                body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">משרד הדתות רוצים להזמין חילונים לשמור שבת</h3>
+<p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: שלט החוצות. סוף.</p>
+<p><strong>שני אנשים הולכים ברחוב</strong> ורואים שלט חוצות ענק שעליו רשום: <em>"משרד הדתות רוצים להזמין חילונים לשמור שבת"</em></p>
+<p>תוך כדי שהפריים על השלט — אחד קורא את המשפט לשני, הם מסתכלים אחד על השני בתמיהה, ואחד אומר:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"למה שמישהו ירצה להתחיל לשמור שבת פתאום?"</blockquote>
+<p>פתאום הם שומעים <strong>קול עבה צועק עליהם מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"למה שמישהו ירצה לשמור שבת?! אתם לא מתביישים!?"</blockquote>
+<p>הם מסתכלים אחד על השני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אמאלה מי זה היה?"</blockquote>
+<p><strong>הקול מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"מה לא עשיתי בשבילכם, הוצאתי אותכם ממצרים, קרעתי את ים סוף לשתיים, מעבדות לחירות, אתם העם הכי חכם בעולם, טכנולוגיה מפותחת אדמה פורה, את כל אויביכם אני משמיד, מה כבר ביקשתי? יום אחד בשבוע תנו לי שקט, תתפללו בשבילי קצת איזה ברוך הוא ברוך שמו מה יש בזה"</blockquote>
+<p>תוך כדי הדיבור הם אומרים אחד לשני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אני לא מאמין במה שקורה כאן"</blockquote>
+<p><strong>הקול מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"בטח שאתה לא תאמין איך תאמין? שבת אחת לא שמרת יא גוי אחד"</blockquote>
+<p>חבר אחד אומר לשני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אתה באמת קצת גוי"</blockquote>
+<p>החבר השני:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"ואתה מה יותר טוב, יפה מאוד התבוללת בדרום אמריקה, שאני לא אגיד לו על אריקה"</blockquote>
+<p><strong>הקול מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"על מי?"</blockquote>
+<p>חבר אחד:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"שתוק מה אתה דפוק, טוב תקשיב אנחנו מצטערים הבנו את הקטע ואנחנו נשבעים לך שמעכשיו נשתדל"</blockquote>
+<p><strong>הקול מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"נשבעים?! במה נשבעים?!"</blockquote>
+<p>שני החברים:</p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"אה אה לא נשבעים מבטיחים, מבטיחים סליחה"</blockquote>
+<p><strong>הקול מהשמיים:</strong></p>
+<blockquote style="border-right:3px solid #c0392b;padding-right:12px;margin:12px 0;color:#444;">"יופי, סעו לי מהפנים"</blockquote>
+<p>שני החברים נראים <strong>בורחים מהמקום.</strong></p>
+<p>המצלמה עוברת אל מאחורי שלט החוצות — שם נראה בן אדם יושב עם מסך שמראה את האנשים שעמדו אל מול השלט ומיקרופון, <strong>מחייך לעצמו ואוכל צ'יזבורגר. סוף.</strong></p>
+<br/>
+<p style="font-size:0.82rem;color:#999;border-top:1px solid #eee;padding-top:12px;">גרסה נוספת: כל פעם שהקול מדבר יש קלוז אפ על פרצוף של אדם עם זקן עבות שמדבר למיקרופון — ובסוף זה באמת אלוהים ששובר קיר רביעי ואומר למסך: "אז איך תשמעו אותי מכזה רחוק?" — יושב בחדר מצלמות עצום עם מלא מסכים שרואים את כל העולם.</p>`
+              }
+            ]
+          }
+        ]
+      },
+      {
+        tag: 'שונות',
+        title: 'סתם שטויות',
+        desc: 'כי לא הכל צריך להיות רציני. חלק מזה אפילו מצחיק.',
+        body: 'תוכן העבודה יוצג כאן.'
+      },
+    ]
+
+    const container = document.getElementById('cards')
+    const modal     = document.getElementById('modal')
+    const modalTitle = document.getElementById('modalTitle')
+    const modalBody  = document.getElementById('modalBody')
+
+    function showVersionPicker(folder, item) {
+      const hasStory = item.storyboardImg || item.storyboardPdf
+      const extraBtn = item.videoUrl
+        ? `<button class="version-btn accent" id="vExtra">
+            <strong>כאן יש סרטון</strong>
+            <span>ניסיון ראשון שלי עם AI</span>
+           </button>`
+        : hasStory
+        ? `<button class="version-btn accent" id="vExtra">
+            <strong>סטורי בורד, קצת AI מה יש בזה</strong>
+            <span>לראות את זה בתמונות</span>
+           </button>`
+        : ''
+      openModal(item.label, `
+        <div class="version-picker">
+          <p>באיזו גרסה תרצה לקרוא?</p>
+          <button class="version-btn solid" id="vShort">
+            <strong>גרסה קצרה ומתחכמת</strong>
+            <span>לאלה שמבינים מהר</span>
+          </button>
+          <button class="version-btn" id="vFull">
+            <strong>תסריט מלא</strong>
+            <span>שוט אחר שוט, כל הפרטים</span>
+          </button>
+          ${extraBtn}
+          <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
+        </div>`)
+      document.getElementById('vShort').addEventListener('click', () => {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.shortBody}</div>`)
+        document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
+      })
+      document.getElementById('vFull').addEventListener('click', () => {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`)
+        document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
+      })
+      if (item.videoUrl || hasStory) {
+        document.getElementById('vExtra').addEventListener('click', () => {
+          let content
+          if (item.videoUrl) {
+            content = `
+              <p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:16px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;">
+                זה ניסיון ראשון שלי עם AI ולקח לי יום להכין את זה, רק דמיינו מה יכל להיות עם תקציב של משרד....
+              </p>
+              <video src="${item.videoUrl}" controls style="width:100%;border-radius:10px;display:block;"></video>`
+          } else {
+            content = item.storyboardImg
+              ? `<img src="${item.storyboardImg}" style="border-radius:8px;" alt="סטורי בורד" />`
+              : `<iframe class="storyboard-wrap" src="${item.storyboardPdf}"></iframe>`
+          }
+          openModal(item.label, `<button class="back-btn" id="backBtn">← חזרה</button>${content}`)
+          document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
+        })
+      }
+      document.getElementById('backBtn').addEventListener('click', () => renderFolder(folder))
+    }
+
+    function showVersionList(folder, item) {
+      const introHtml = item.intro
+        ? `<p style="font-size:0.88rem;color:#555;line-height:1.75;margin-bottom:8px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;text-align:right;">${item.intro}</p>`
+        : ''
+      const btns = item.versions.map((v, i) =>
+        `<button class="version-btn ${i===0?'solid':''}" data-vidx="${i}">
+          <strong>${v.label}</strong>
+          <span>${v.sublabel||''}</span>
+        </button>`).join('')
+      openModal(item.label, `
+        <div class="version-picker">
+          ${introHtml}
+          <p>באיזו גרסה תרצה לקרוא?</p>
+          ${btns}
+          <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
+        </div>`)
+      modalBody.querySelectorAll('[data-vidx]').forEach(el => {
+        el.addEventListener('click', () => {
+          const vIdx = parseInt(el.dataset.vidx)
+          const v = item.versions[vIdx]
+          if (v.shortBody) { showSubVersionPicker(folder, item, v); return }
+          if (v.printImg && !v.body) {
+            openModal(item.label,
+              `<button class="back-btn" id="backBtn">← חזרה</button><img src="${v.printImg}" style="border-radius:8px;" alt="פרינט" />`)
+            document.getElementById('backBtn').addEventListener('click', () => showVersionList(folder, item))
+            return
+          }
+          showVersionBody(folder, item, vIdx)
+        })
+      })
+      document.getElementById('backBtn').addEventListener('click', () => renderFolder(folder))
+    }
+
+    function showSubVersionPicker(folder, item, v) {
+      const printBtn = v.printImg
+        ? `<button class="version-btn accent" id="vPrint">
+            <strong>הנה פרינט של זה</strong>
+            <span>לראות את הפרינט</span>
+           </button>`
+        : ''
+      openModal(item.label, `
+        <div class="version-picker">
+          <p>מה תרצה לראות?</p>
+          <button class="version-btn solid" id="vShort">
+            <strong>גרסה קצרה</strong>
+            <span>בקצרה ובמתחכמת</span>
+          </button>
+          <button class="version-btn" id="vFull">
+            <strong>גרסה ארוכה</strong>
+            <span>כל הפרטים, שוט אחר שוט</span>
+          </button>
+          ${printBtn}
+          <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
+        </div>`)
+      document.getElementById('vShort').addEventListener('click', () => {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${v.shortBody}</div>`)
+        document.getElementById('backBtn').addEventListener('click', () => showSubVersionPicker(folder, item, v))
+      })
+      document.getElementById('vFull').addEventListener('click', () => {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${v.body}</div>`)
+        document.getElementById('backBtn').addEventListener('click', () => showSubVersionPicker(folder, item, v))
+      })
+      if (v.printImg) {
+        document.getElementById('vPrint').addEventListener('click', () => {
+          openModal(item.label,
+            `<button class="back-btn" id="backBtn">← חזרה</button><img src="${v.printImg}" style="border-radius:8px;" alt="פרינט" />`)
+          document.getElementById('backBtn').addEventListener('click', () => showSubVersionPicker(folder, item, v))
+        })
+      }
+      document.getElementById('backBtn').addEventListener('click', () => showVersionList(folder, item))
+    }
+
+    function showVersionBody(folder, item, vIdx) {
+      const v = item.versions[vIdx]
+      const total = item.versions.length
+      const hasStory = v.storyboardPdf || v.storyboardImg
+      const storyBtn = hasStory
+        ? `<button class="version-btn accent" id="vStory" style="margin-top:20px;width:100%;">
+            <strong>סטורי בורד, קצת AI מה יש בזה</strong>
+            <span>לראות את זה בתמונות</span>
+           </button>`
+        : ''
+      openModal(item.label, `
+        <div class="version-nav-bar">
+          <button class="back-btn" id="backBtn" style="margin-bottom:0;position:static;">← חזרה</button>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button class="nav-arrow" id="prevBtn" ${vIdx === 0 ? 'disabled' : ''}>›</button>
+            <span class="version-counter">${vIdx + 1} / ${total}</span>
+            <button class="nav-arrow" id="nextBtn" ${vIdx === total - 1 ? 'disabled' : ''}>‹</button>
+          </div>
+        </div>
+        <div class="script-body">${v.body}</div>
+        ${storyBtn}`)
+      document.getElementById('backBtn').addEventListener('click', () => showVersionList(folder, item))
+      if (vIdx > 0)
+        document.getElementById('prevBtn').addEventListener('click', () => showVersionBody(folder, item, vIdx - 1))
+      if (vIdx < total - 1)
+        document.getElementById('nextBtn').addEventListener('click', () => showVersionBody(folder, item, vIdx + 1))
+      if (hasStory) {
+        document.getElementById('vStory').addEventListener('click', () => {
+          const content = v.storyboardImg
+            ? `<img src="${v.storyboardImg}" style="border-radius:8px;" alt="סטורי בורד" />`
+            : `<iframe class="storyboard-wrap" src="${v.storyboardPdf}"></iframe>`
+          openModal(item.label, `<button class="back-btn" id="backBtn">← חזרה</button>${content}`)
+          document.getElementById('backBtn').addEventListener('click', () => showVersionBody(folder, item, vIdx))
+        })
+      }
+    }
+
+    function openModal(title, htmlContent) {
+      modalTitle.textContent = title
+      modalBody.innerHTML = htmlContent
+      modal.classList.add('open')
+      modal.setAttribute('aria-hidden', 'false')
+    }
+
+    function renderFolder(w) {
+      const grid = `<div class="sub-grid">${w.items.map((item, i) => `
+        <div class="sub-item" data-folder="${w.title}" data-index="${i}">
+          <img src="${item.img}" alt="${item.label}" />
+          <div class="sub-item__label">${item.label}</div>
+        </div>`).join('')}</div>`
+      openModal(w.title, grid)
+      modalBody.querySelectorAll('.sub-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const idx = parseInt(el.dataset.index)
+          const item = w.items[idx]
+          if (item.isFolder) {
+            renderSubFolder(w, item)
+          } else if (item.shortBody) {
+            showVersionPicker(w, item)
+          } else if (item.versions) {
+            showVersionList(w, item)
+          } else {
+            openModal(item.label,
+              `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`)
+            document.getElementById('backBtn').addEventListener('click', () => renderFolder(w))
+          }
+        })
+      })
+    }
+
+    function renderSubFolder(parent, folder) {
+      const introHtml = folder.intro
+        ? `<p style="font-size:0.88rem;color:#555;line-height:1.75;margin-bottom:16px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;text-align:right;">${folder.intro}</p>`
+        : ''
+      const grid = `<div class="sub-grid">${folder.items.map((item, i) => `
+        <div class="sub-item" data-index="${i}">
+          <img src="${item.img}" alt="${item.label}" />
+          <div class="sub-item__label">${item.label}</div>
+        </div>`).join('')}</div>`
+      openModal(folder.label, `
+        ${introHtml}
+        ${grid}
+        <button class="back-btn" id="backBtn" style="margin-top:16px;">← חזרה</button>`)
+      modalBody.querySelectorAll('.sub-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const item = folder.items[parseInt(el.dataset.index)]
+          openModal(item.label,
+            `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`)
+          document.getElementById('backBtn').addEventListener('click', () => renderSubFolder(parent, folder))
+        })
+      })
+      document.getElementById('backBtn').addEventListener('click', () => renderFolder(parent))
+    }
+
+    WORKS.forEach(w => {
+      const card = document.createElement('div')
+      card.className = 'card'
+      card.innerHTML = `
+        <div class="card__tag">${w.tag}</div>
+        <div class="card__title">${w.title}</div>
+        <div class="card__desc">${w.desc}</div>
+      `
+      card.addEventListener('click', () => {
+        if (w.pdfUrl) {
+          window.open(w.pdfUrl, '_blank')
+        } else if (w.isFolder) {
+          renderFolder(w)
+        } else {
+          openModal(w.title, `<div class="script-body">${w.body}</div>`)
+        }
+      })
+      container.appendChild(card)
+    })
+
+    document.querySelectorAll('[data-close]').forEach(el =>
+      el.addEventListener('click', () => {
+        modal.classList.remove('open')
+        modal.setAttribute('aria-hidden', 'true')
+      })
+    )
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        modal.classList.remove('open')
+        modal.setAttribute('aria-hidden', 'true')
+      }
+    })
+
+    // ── מתג שפה (בדיחה) ──
+    const TRANSLIT_MAP = {
+      'א':'a','ב':'b','ג':'g','ד':'d','ה':'h','ו':'o','ז':'z','ח':'ch',
+      'ט':'t','י':'y','כ':'k','ך':'ch','ל':'l','מ':'m','ם':'m','נ':'n',
+      'ן':'n','ס':'s','ע':'a','פ':'p','ף':'f','צ':'tz','ץ':'tz','ק':'k',
+      'ר':'r','ש':'sh','ת':'t'
+    }
+
+    let isEnglishMode = false
+
+    function hebrewToLatin(str) {
+      return str.split('').map(c => TRANSLIT_MAP[c] || c).join('')
+    }
+
+    function getAllTextNodes(root) {
+      const nodes = []
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null)
+      let n
+      while ((n = walker.nextNode())) nodes.push(n)
+      return nodes
+    }
+
+    function toggleLanguage() {
+      isEnglishMode = !isEnglishMode
+      const btn = document.getElementById('langToggle')
+      const label = document.getElementById('langLabel')
+      btn.classList.toggle('active', isEnglishMode)
+      label.textContent = isEnglishMode ? 'HE' : 'EN'
+
+      getAllTextNodes(document.body).forEach(node => {
+        if (isEnglishMode) {
+          node._heb = node.textContent
+          node.textContent = hebrewToLatin(node.textContent)
+        } else if (node._heb !== undefined) {
+          node.textContent = node._heb
+          delete node._heb
+        }
+      })
+    }
+
+    const langObserver = new MutationObserver(mutations => {
+      if (!isEnglishMode) return
+      mutations.forEach(m => {
+        m.addedNodes.forEach(added => {
+          const nodes = added.nodeType === Node.TEXT_NODE
+            ? [added]
+            : getAllTextNodes(added)
+          nodes.forEach(node => {
+            if (!node._heb) {
+              node._heb = node.textContent
+              node.textContent = hebrewToLatin(node.textContent)
+            }
+          })
+        })
+      })
+    })
+    langObserver.observe(document.body, { childList: true, subtree: true })
+  </script>
+</body>
+</html>
