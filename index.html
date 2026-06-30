@@ -23,7 +23,7 @@
       --ink:   #1c1c1c;
       --mid:   #555;
       --light: #e8e6e0;
-      --accent:#c0392b;
+      --accent:#e8001c;
       --radius: 10px;
     }
 
@@ -85,7 +85,7 @@
     .hero {
       max-width: 900px;
       margin: 0 auto;
-      padding: 100px 48px 80px;
+      padding: 130px 48px 110px;
     }
     .hero__kicker {
       font-size: 0.85rem;
@@ -99,29 +99,17 @@
       font-family: 'Frank Ruhl Libre', serif;
       font-weight: 900;
       font-size: clamp(2.4rem, 6vw, 4rem);
-      line-height: 1.2;
+      line-height: 1.4;
       color: var(--ink);
-      margin-bottom: 28px;
+      margin-bottom: 48px;
     }
     .hero__accent { color: var(--accent); }
     .hero__small {
       font-size: 0.55em;
-      font-family: 'Heebo', sans-serif;
-      font-weight: 400;
-      color: var(--mid);
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      color: var(--ink);
     }
-
-    /* ── הטקסט החדש מתחת לכותרת ── */
-    .hero__tagline {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--mid);
-      border-right: 3px solid var(--accent);
-      padding-right: 16px;
-      margin-bottom: 28px;
-      line-height: 1.6;
-    }
-
     .hero__sub {
       font-size: 1.05rem;
       color: var(--mid);
@@ -170,7 +158,7 @@
     }
     .btn--forbidden:hover {
       animation: wiggle .6s ease-in-out forwards, pulse-ring 2s ease-out infinite;
-      background: #a93226;
+      background: #b5001a;
     }
 
     .btn {
@@ -224,6 +212,205 @@
       line-height: 1.85;
     }
 
+    /* ── Featured Carousel ── */
+    .featured {
+      padding: 64px 0;
+      background: var(--white);
+      border-top: 1px solid var(--light);
+    }
+    .featured__title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      margin-top: 10px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 0 24px;
+    }
+    .featured-carousel {
+      position: relative;
+      overflow: hidden;
+      padding: 10px 0 22px;
+      max-width: 560px;
+      margin: 0 auto;
+      cursor: grab;
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .featured-carousel.dragging { cursor: grabbing; }
+    .featured-carousel__track {
+      display: flex;
+      gap: 12px;
+      transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+      will-change: transform;
+    }
+    .featured-carousel__track.no-anim { transition: none; }
+    .featured-card {
+      flex: 0 0 54%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #eeece7;
+      aspect-ratio: 4/3;
+      opacity: 0.4;
+      transform: scale(0.9);
+      filter: blur(1px);
+      transition: opacity .4s ease, transform .4s ease, filter .4s ease, box-shadow .4s ease;
+      box-shadow: none;
+    }
+    .featured-card.active {
+      opacity: 1;
+      transform: scale(1);
+      filter: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,.11);
+    }
+    .featured-card img {
+      width: 48%;
+      height: 48%;
+      object-fit: contain;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform .3s ease;
+    }
+    .featured-card.active:hover img { transform: translate(-50%, -50%) scale(1.06); }
+    .featured-card__info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .featured-card__name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+    .featured-card__tag {
+      font-size: 0.68rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+    }
+    .carousel__controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .carousel__btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--light);
+      background: var(--white);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: background .2s, border-color .2s, color .2s;
+      flex-shrink: 0;
+    }
+    .carousel__btn:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+    .carousel__dots {
+      display: flex;
+      gap: 7px;
+    }
+    .carousel__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--light);
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+      padding: 0;
+    }
+    .carousel__dot.active { background: var(--ink); }
+    @media (max-width: 600px) {
+      .featured { padding: 48px 0; }
+      .featured-card { flex: 0 0 78%; }
+    }
+
+    /* ── Modal Intro ── */
+    .modal-intro {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      background: #f3f1ec;
+      border-radius: var(--radius);
+      border-right: 4px solid var(--accent);
+    }
+
+    /* ── Modal Gallery ── */
+    .mgal-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 12px 0 8px;
+    }
+    .modal-gallery {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0 8px;
+    }
+    .mgal-img-wrap {
+      flex: 1;
+      max-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f1ec;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .mgal-img-wrap.dragging { cursor: grabbing; }
+    .mgal-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      display: block;
+    }
+    .mgal-btn {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--light);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .mgal-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+    .mgal-caption {
+      text-align: center;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .mgal-counter {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--mid);
+    }
+
     /* ── Work ── */
     .work {
       max-width: 900px;
@@ -267,6 +454,13 @@
       color: var(--accent);
       margin-bottom: 10px;
     }
+    .card__quip {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
     .card__title {
       font-family: 'Frank Ruhl Libre', serif;
       font-weight: 700;
@@ -302,8 +496,13 @@
       background: #f7f7f5;
       padding: 16px;
     }
+    .sub-item__desc {
+      font-size: 0.72rem;
+      color: var(--mid);
+      padding: 0 8px 8px;
+    }
     .sub-item__label {
-      padding: 10px 8px;
+      padding: 10px 8px 4px;
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--ink);
@@ -339,6 +538,33 @@
     }
     .nav-arrow:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
     .nav-arrow:disabled { opacity: 0.28; cursor: default; }
+    .vc-content-wrap {
+      cursor: grab;
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .vc-content-wrap.dragging { cursor: grabbing; }
+    .vc-img { width: 100%; display: block; border-radius: 8px; pointer-events: none; }
+    .vc-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 18px rgba(0,0,0,.2);
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s;
+      z-index: 20;
+    }
+    .vc-arrow--right { right: 16px; }
+    .vc-arrow--left { left: 16px; }
+    .vc-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
     .back-btn {
       position: sticky;
       top: 0;
@@ -502,11 +728,65 @@
       color: var(--ink);
     }
 
-    @media (max-width: 600px) {
-      .topbar { padding: 14px 20px; }
-      .hero, .work { padding: 60px 20px; }
-      .about { padding: 60px 20px; }
-      .contact { padding: 60px 20px; }
+    @media (max-width: 768px) {
+      /* Topbar */
+      .topbar { padding: 12px 20px; }
+      .topbar__nav { gap: 18px; }
+      .topbar__nav a { font-size: 0.82rem; }
+      .lang-toggle { padding: 4px 10px; font-size: 0.72rem; }
+
+      /* Hero */
+      .hero { padding: 72px 24px 56px; }
+      .tagline-break { display: none; }
+      .hero__title { font-size: clamp(2rem, 9vw, 3.2rem); line-height: 1.25; margin-bottom: 28px; }
+      .hero__sub { font-size: 0.95rem; margin-bottom: 32px; }
+      .hero__cta { gap: 12px; }
+      .btn { padding: 11px 22px; font-size: 0.9rem; }
+      .btn--forbidden { bottom: 20px; left: 20px; padding: 12px 18px; font-size: 0.88rem; }
+
+      /* About */
+      .about { padding: 56px 24px; }
+      .about__lead { font-size: 1.3rem; }
+      .about__body { font-size: 1rem; }
+
+      /* Featured */
+      .featured { padding: 48px 0; }
+      .featured__title { font-size: 1.35rem; margin-bottom: 24px; padding: 0 20px; }
+      .featured-carousel { max-width: 100%; }
+      .featured-card { flex: 0 0 75%; }
+      .carousel__controls { gap: 12px; margin-top: 16px; }
+
+      /* Work */
+      .work { padding: 56px 24px; }
+      .work__title { font-size: 1.6rem; }
+      .cards { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .card { padding: 20px 16px; }
+
+      /* Sub-grid */
+      .sub-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+      .sub-item img { height: 90px; }
+
+      /* Modal */
+      .modal__panel { width: 100vw; max-height: 100vh; border-radius: 16px 16px 0 0; align-self: flex-end; }
+      .modal.open { align-items: flex-end; }
+      .modal__body { padding: 16px 20px; font-size: 0.93rem; }
+      .modal__head { padding: 14px 20px; }
+
+      /* Gallery */
+      .mgal-img-wrap { max-height: 280px; }
+      .mgal-img { max-height: 280px; }
+
+      /* Contact */
+      .contact { padding: 56px 24px; }
+      .contact__title { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .topbar__nav a { font-size: 0.78rem; }
+      .topbar__nav { gap: 12px; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .featured-card { flex: 0 0 82%; }
+      .hero__title { font-size: clamp(1.9rem, 10vw, 2.8rem); }
     }
   </style>
 </head>
@@ -537,13 +817,13 @@
       </h1>
 
       <p class="hero__tagline">
-        רז ניניו, בן 26, קופירייטר בהתהוות, אמן בנפש ועצלן בראש,<br />
+        רז ניניו, בן 26, קופירייטר בהתהוות, אמן בנפש ועצלן בראש,<br class="tagline-break" />
         פיוז'ן של תל אביב וחולון עם נגיעות דרומיות.
       </p>
 
       <div class="hero__cta">
-        <a href="#work" class="btn btn--solid">לתיק העבודות</a>
-        <a href="#contact" class="btn btn--ghost">בואו נדבר</a>
+        <a href="#work" class="btn btn--solid">תראו אם אני שווה את הכסף</a>
+        <a href="#contact" class="btn btn--ghost">יאללה נדבר</a>
       </div>
     </section>
 
@@ -551,15 +831,31 @@
       🚫 אל תלחץ כאן
     </a>
 
+    <!-- עבודות נבחרות -->
+    <section id="featured" class="featured">
+      <span class="section__label">/ עבודות נבחרות</span>
+      <h2 class="featured__title">כמה דברים שגאה בהם במיוחד.</h2>
+      <div class="featured-carousel" id="featuredCarousel">
+        <div class="featured-carousel__track" id="featuredTrack"></div>
+      </div>
+      <div class="carousel__controls">
+        <button class="carousel__btn" id="carouselPrev" aria-label="הקודם">&#8594;</button>
+        <div class="carousel__dots" id="carouselDots"></div>
+        <button class="carousel__btn" id="carouselNext" aria-label="הבא">&#8592;</button>
+      </div>
+    </section>
+
+    <!-- קמפיין גמר: הכל טוב כאן -->
+
     <!-- מי אני -->
     <section id="about" class="about">
       <span class="section__label">/ 01 — מי אני</span>
       <p class="about__lead">
-        את הגרסא הטובה לקטע הזה בטח כבר מחקתי.
+        את הגרסא הטובה לזה בטח מחקתי.
       </p>
       <p class="about__body">
-        אבל נזרום עם זאת. כמו שכבתי — רז, בן 26, גר בתל אביב, עם זיקה מאוד גדולה לעולם
-        הכתיבה והתוכן. רעב מאוד גדול להצליח בתחום ולהגיד לאמא שלי שאני סוף סוף מקבל
+        רז, 26, מתקיים בתל אביב, (מאוד לא) בוגר מכללת קופיוויז, עם זיקה מאוד גדולה לכתיבה
+        ובוטנים אמריקאיים. מעוניין להתפתח ולגדול בתחום ולהגיד לאמא שלי שאני סוף סוף מקבל
         סיבוס ותלושים לחג שהם לא 150 שקלים ליוחננוף. ראש יצירתי פורה וכל הגשעפט הזה.
         חוטא לכתוב סטנד אפ לפעמים. וזהו, אמרתי מספיק.
       </p>
@@ -577,12 +873,16 @@
   <!-- צרו קשר -->
   <footer id="contact" class="contact">
     <span class="section__label section__label--light">/ 03 — דברו איתי</span>
-    <h2 class="contact__title">רוצים לעבוד יחד?<br />או סתם להגיד שצחקתם?</h2>
+    <h2 class="contact__title">אם הגעתם עד כאן,<br />כנראה שיש לנו על מה לדבר.</h2>
     <ul class="contact__list">
       <li><a href="mailto:raz.niniu88@gmail.com">raz.niniu88@gmail.com</a></li>
       <li><a href="https://wa.me/972503444449?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%96,%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%94%D7%A2%D7%A1%D7%99%D7%A7%20%D7%90%D7%95%D7%AA%D7%9A" target="_blank" rel="noopener">050-344-4449</a></li>
-      <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a></li>
+      <li><a href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.01" fill="currentColor" stroke-width="3"/></svg>
+      </a></li>
     </ul>
     <p class="contact__foot">רז ניניו · קופירייטר · נכתב, נמחק, ונכתב שוב, בתל אביב.</p>
   </footer>
@@ -604,18 +904,24 @@
       {
         tag: 'קו"ח',
         title: 'קו"ח',
+        quip: 'כן, גם את זה כתבתי לבד',
         desc: 'כי גם קורות חיים זה קופי. ואולי הכי חשוב שיש.',
         pdfUrl: 'https://docs.google.com/viewer?url=https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/cv.pdf'
       },
       {
         tag: 'תסריטים',
+        slug: 'scripts',
         title: 'תסריטים',
+        quip: 'לא, אני לא שחקן',
         desc: 'מה שקורה על המסך מתחיל תמיד בדף ריק.',
         isFolder: true,
         items: [
           {
+            slug: 'panasonic',
+            insight: 'כשגדלת בלי — "צריך" זה לא מותרות. זו הוכחה.',
             img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-panasonic.jpg',
             label: 'פרסומת פנסוניק 103"',
+            combinedView: true,
             shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
 <p>גבר אמיד מזמין טלוויזיה ענקית כי הוא היה עני, מקבל פלאשבק לילדות שהוצאה לפועל לקחו לו את הטלוויזיה ועכשיו הוא יכול להרשות לעצמו טלוויזיה ענקית ויפה.</p>
 </div>`,
@@ -634,8 +940,11 @@
             storyboardImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/storyboard-panasonic.jpeg'
           },
           {
+            slug: 'vw',
+            insight: 'טכנולוגיה יכולה לפתור כמעט הכל — חוץ מהאנשים שמשתמשים בה.',
             img: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg',
             label: 'חניה ב-AI',
+            combinedView: true,
             shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
 <p>נשים לא יודעות לחנות, אז גבר קונה לאשתו רכב שאפשר לחנות בו ב-AI בלחיצת כפתור בלי בעיה — וגם את זה היא מצליחה לדפוק.</p>
 <br/>
@@ -668,8 +977,10 @@
             storyboardImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/storyboard-vw.jpeg'
           },
           {
+            insight: 'הדבר שמפחיד אוהד פנאטי יותר מכל עונש — קרחות ביציע.',
             img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-football.jpg',
             label: 'אלימות במגרשים',
+            combinedView: true,
             shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
 <p>משחק בין הפועל לביתר. אוהדי ביתר — באופן מפתיע — מתחילים עם חזיזים ואלימות. לאט לאט הקהל נעלם: הורים, ילדים, וגם השדרן.</p>
 <br/>
@@ -695,9 +1006,13 @@
             storyboardImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/storyboard-violence.jpeg'
           },
           {
+            slug: 'leumi',
+            insight: 'ברגע שאתה נותן לילד כסף — אתה מגלה כמה הוא אחראי.',
             img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-leumi.jpg',
             label: 'לאומי יאנג',
+            combinedView: true,
             videoUrl: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/video-leumi.mp4',
+            videoCaption: 'זה ניסיון ראשון שלי ביצירת סרטוני AI ולקח לי יום להכין את זה, רק דמיינו מה יכל להיות עם תקציב של משרד....',
             shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
 <p>הורים מביאים לילד כרטיס אשראי, מפחדים מההשלכות — ובסוף הילד שלהם נהייה יותר מחושב כלכלית מהם ואף קמצן אבו קומונה.</p>
 <br/>
@@ -737,8 +1052,11 @@
 <p style="text-align:center;font-weight:700;">ההורים בשוק. סוף.</p>`
           },
           {
+            slug: 'yachin',
+            insight: 'הסטיגמה של השעועית חיה בראש — לא בבטן.',
             img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-yachin.png',
             label: 'פרסומת יכיני שעועית',
+            combinedView: true,
             versions: [
               {
                 label: 'גרסה 1 — הכיסא',
@@ -771,7 +1089,9 @@
       },
       {
         tag: 'פרינטים',
+        slug: 'prints',
         title: 'פרינטים',
+        quip: 'כן, אני ציירתי',
         desc: 'מודעות שאפשר להדביק על קיר. ועדיין להיות גאה.',
         isFolder: true,
         items: [
@@ -779,6 +1099,7 @@
             img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/DHL_Logo.svg/1280px-DHL_Logo.svg.png',
             label: 'DHL',
             intro: 'DHL רוצים להבהיר כמה המשלוחים שלהם מהירים.',
+            combinedView: true,
             versions: [
               { label: 'אופציה 1', sublabel: 'פרינט ראשון', printImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/print-dhl-1.jpeg' },
               { label: 'אופציה 2', sublabel: 'פרינט שני',   printImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/print-dhl-2.jpeg' },
@@ -805,12 +1126,54 @@
       {
         tag: 'רדיו',
         title: 'רדיו',
+        quip: 'בלי תמונה. רק אני.',
         desc: 'שלושים שניות. בלי תמונה. רק מילים.',
-        body: 'תוכן העבודה יוצג כאן.'
+        isFolder: true,
+        intro: 'תדמיינו שזה עם קול למה אין לי כסף ל-SUNO הזבל הזה',
+        items: [
+          {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/DHL_Logo.svg/1280px-DHL_Logo.svg.png',
+            label: 'DHL',
+            combinedView: true,
+            body: `
+              <p><strong>אמא:</strong> "מי זה שם"</p>
+              <p><strong>שליח:</strong> "שליח"</p>
+              <p><strong>אמא:</strong> "מה שליח לא הזמנתי כלום"</p>
+              <p><strong>שליח:</strong> בבקשה גבירתי אלו החיתולים שהזמנת</p>
+              <p><strong>אמא:</strong> מה חיתולים אני לא הזמנתי שום חיתו...</p>
+              <p><strong>אבא:</strong> מאמי נגמרו לנו החיתולים צריך ללכת להביא</p>
+              <p><strong>אמא:</strong> מה?</p>
+              <p><em>*רעש של טריקת דלת*</em></p>
+              <p><strong>דבר מפרסם:</strong> DHL — מהירות ללא התפשרות</p>`
+          },
+          {
+            img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-jvc.png',
+            label: 'JVC',
+            combinedView: true,
+            body: `
+              <p><strong>קריין:</strong> "ככה תשמעו את הים באוזניות שהם לא JVC – רעש של ים רגיל כמו שאנחנו מכירים"</p>
+              <p><strong>קריין:</strong> "וככה תשמעו את הים באוזניות החדשות של JVC –"</p>
+              <p><em>*רעש של מטקות, איש צבוגר שצועק "אני הולך", ילד שצועק לאמא "אמא אני רוצה ארטיק", המציל צועק "הילד המכוער עם הבגד ים האדום אמא מחכה לך בתחנת ההצלה", מישהו שורק למישהי "הלו בובה את באה לפה הרבה", קאט.*</em></p>
+              <p><strong>דבר מפרסם:</strong> JVC — לשמוע, אחרת.</p>`
+          },
+          {
+            img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-duracell.png',
+            label: 'דורסל',
+            combinedView: true,
+            body: `
+              <p><em>*נשמע רעש של אדם שעושה קולות של צעצוע*</em></p>
+              <p>פצ'יו פצ'יו בום בום בום</p>
+              <p><strong>ילד</strong> <em>(בקול מבואס):</em> "אבא, אני רוצה שהצעצוע יעבוד"</p>
+              <p><strong>אבא</strong> <em>(בחוסר ביטחון ומעורער):</em> "אמממ חמוד אני רוצה שנפתח את הדמיון ו-אא להוציא קולות מהפה עוזר לנו לפתח את היצירתיות"</p>
+              <p><strong>ילד</strong> <em>(בקול מבואס):</em> "אוף אוקיי אבא"</p>
+              <p><strong>דבר מפרסם:</strong> שוב נגמרו הבטריות בצעצוע? תפסיקו עם התירוצים, פשוט תקנו דורסל</p>`
+          }
+        ]
       },
       {
         tag: '❤️ vs המרצה',
         title: 'דברים שאני אהבתי והמרצה שלי לא',
+        quip: 'ספוילר: אני צדקתי',
         desc: 'ספוילר: אני עדיין חושב שצדקתי.',
         isFolder: true,
         items: [
@@ -818,8 +1181,10 @@
             img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-hamuzim.jpg',
             label: 'חמוצי אדם',
             intro: `במשימה זאת התבקשנו לייצר מותג מ-אפס, במקרה הזה זה היה לחמוצים. התובנה עמדה על הסלנג הישראלי "יאללה לך תעשה חמוצים" — ביטוי שמשתמשים בו בוויכוח כדי לזלזל בבן אדם וגם קצת בשביל הצחוק, הצגתי את זה בשני זוויות שונות וזה מה שיצא.`,
+            combinedView: true,
             versions: [
               {
+                insight: '',
                 label: 'אופציה 1 — הלכנו ועשינו חמוצים',
                 sublabel: 'כשאומרים לך ללכת — הולכים',
                 shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
@@ -855,6 +1220,7 @@
                 printImg: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/print-adam-1.jpeg'
               },
               {
+                insight: '',
                 label: 'אופציה 2 — לא כל אחד יכול לעשות חמוצים',
                 sublabel: 'כשאתה אוסף את מיטבי החמוצים בעיר',
                 shortBody: `<div style="font-family:'Frank Ruhl Libre',serif;font-size:1.25rem;line-height:2;text-align:center;padding:20px 0;">
@@ -901,6 +1267,7 @@
               {
                 img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-ikea.png',
                 label: 'איקאה ירושלים',
+                combinedView: true,
                 body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">איקאה פותחת סניף ראשון בירושלים</h3>
 <p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: "איקאה פותחת סניף בירושלים, אנחנו יודעים שחיכיתם"</p>
 <p><strong>זוג חברים הולכים יחד</strong> ואחד אומר פתאום לשני:</p>
@@ -921,6 +1288,7 @@
               {
                 img: 'https://upload.wikimedia.org/wikipedia/he/thumb/5/5a/Wissotzky_Tea_Logo_Hebrew.svg/960px-Wissotzky_Tea_Logo_Hebrew.svg.png',
                 label: 'ויסוצקי',
+                combinedView: true,
                 body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">ויסוצקי רוצה שאנשים יחליפו כוס קפה אחת ביום בכוס תה</h3>
 <p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: לוגו ויסוצקי. סוף.</p>
 <p><strong>קלוז אפ</strong> על פרצוף של בן אדם רואה סטורי בפלאפון. נשמע מהפלאפון קריין שאומר:</p>
@@ -940,6 +1308,7 @@
               {
                 img: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/logo-datot.png',
                 label: 'משרד הדתות',
+                combinedView: true,
                 body: `<h3 style="font-family:'Frank Ruhl Libre',serif;font-size:1.3rem;margin-bottom:8px;text-align:center;">משרד הדתות רוצים להזמין חילונים לשמור שבת</h3>
 <p style="text-align:center;color:#888;font-size:0.9rem;margin-bottom:20px;">דבר מפרסם: שלט החוצות. סוף.</p>
 <p><strong>שני אנשים הולכים ברחוב</strong> ורואים שלט חוצות ענק שעליו רשום: <em>"משרד הדתות רוצים להזמין חילונים לשמור שבת"</em></p>
@@ -981,8 +1350,23 @@
       {
         tag: 'שונות',
         title: 'סתם שטויות',
+        quip: 'גם זה ספר לימוד, נראה לי',
         desc: 'כי לא הכל צריך להיות רציני. חלק מזה אפילו מצחיק.',
-        body: 'תוכן העבודה יוצג כאן.'
+        isFolder: true,
+        items: [
+          {
+            img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8001c'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E",
+            label: 'דברים שאני אוהב',
+            gallery: [
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-me.jpg',         caption: 'את עצמי' },
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-messi.jpg',      caption: 'את הגדול מכולם' },
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-girlfriend.jpg', caption: 'את החברה שלי' },
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-hapoel.jpg',     caption: 'אני גם אוהב לסבול' },
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-desk.jpg',       caption: 'את השולחן בחדר שלי' },
+              { src: 'https://raw.githubusercontent.com/razniniu88-boop/copy-ninio/main/personal-negroni.jpg',    caption: 'נגרוני, על קוניאק!' },
+            ]
+          }
+        ]
       },
     ]
 
@@ -991,67 +1375,164 @@
     const modalTitle = document.getElementById('modalTitle')
     const modalBody  = document.getElementById('modalBody')
 
+    // ── רשימת כל "עמודי" התסריטים בתיקייה (כולל גרסאות) לניווט אחיד ──
+    function getCombinedSequence(folder) {
+      const seq = []
+      folder.items.forEach(item => {
+        if (!item.combinedView) return
+        if (item.versions) item.versions.forEach((v, vIdx) => seq.push({ item, vIdx }))
+        else seq.push({ item, vIdx: null })
+      })
+      return seq
+    }
+
+    function combinedSeqIndexFor(folder, item) {
+      return getCombinedSequence(folder).findIndex(p => p.item === item)
+    }
+
+    function showFolderCombined(folder, seqIdx, backFn) {
+      backFn = backFn || (() => renderFolder(folder))
+      const seq = getCombinedSequence(folder)
+      const { item, vIdx } = seq[seqIdx]
+      const total = seq.length
+      const v = vIdx !== null ? item.versions[vIdx] : null
+      const body = v ? v.body : item.body
+      const imgSrc = v ? (v.storyboardImg || v.printImg) : item.storyboardImg
+      const videoSrc = v ? v.videoUrl : item.videoUrl
+      const videoCaption = v ? v.videoCaption : item.videoCaption
+      openModal(item.label, `
+        <div class="version-nav-bar">
+          <button class="back-btn" id="backBtn" style="margin-bottom:0;position:static;">← חזרה</button>
+          <span class="version-counter">${seqIdx + 1} / ${total}</span>
+        </div>
+        ${item.intro ? `<p class="modal-intro">${item.intro}</p>` : ''}
+        ${item.insight ? `<p class="modal-intro">${item.insight}</p>` : ''}
+        <div class="vc-content-wrap" id="vcContent">
+          ${body ? `<div class="script-body">${body}</div>` : ''}
+          ${imgSrc ? `<img src="${imgSrc}" class="vc-img" style="${body ? 'margin-top:24px;' : ''}" alt="${v && v.storyboardImg || (!v && item.storyboardImg) ? 'סטורי בורד' : 'פרינט'}" />` : ''}
+          ${videoSrc ? `
+          ${videoCaption ? `<p class="modal-intro" style="${body ? 'margin-top:24px;' : ''}">${videoCaption}</p>` : ''}
+          <video src="${videoSrc}" controls style="width:100%;border-radius:8px;display:block;${(body && !videoCaption) ? 'margin-top:24px;' : ''}"></video>` : ''}
+        </div>
+      `, item.slug)
+      document.getElementById('backBtn').addEventListener('click', backFn)
+
+      // ── חצים מרחפים על פני כל החלון, נעים בין כל הפריטים בתיקייה ──
+      const panel = document.querySelector('.modal__panel')
+      panel.querySelectorAll('.vc-arrow').forEach(el => el.remove())
+      const goPrev = () => showFolderCombined(folder, seqIdx - 1, backFn)
+      const goNext = () => showFolderCombined(folder, seqIdx + 1, backFn)
+      if (seqIdx > 0) {
+        const prevBtn = document.createElement('button')
+        prevBtn.className = 'vc-arrow vc-arrow--right'
+        prevBtn.innerHTML = '&#8594;'
+        prevBtn.setAttribute('aria-label', 'התסריט הקודם')
+        prevBtn.addEventListener('click', goPrev)
+        panel.appendChild(prevBtn)
+      }
+      if (seqIdx < total - 1) {
+        const nextBtn = document.createElement('button')
+        nextBtn.className = 'vc-arrow vc-arrow--left'
+        nextBtn.innerHTML = '&#8592;'
+        nextBtn.setAttribute('aria-label', 'התסריט הבא')
+        nextBtn.addEventListener('click', goNext)
+        panel.appendChild(nextBtn)
+      }
+
+      // ── ניווט עם חיצי המקלדת (מחשב) ──
+      if (vcKeyHandler) document.removeEventListener('keydown', vcKeyHandler)
+      vcKeyHandler = e => {
+        if (e.key === 'ArrowRight' && seqIdx > 0) goPrev()
+        if (e.key === 'ArrowLeft' && seqIdx < total - 1) goNext()
+      }
+      document.addEventListener('keydown', vcKeyHandler)
+
+      // ── החלקה בין תסריטים (פלאפון) ──
+      const vcContent = document.getElementById('vcContent')
+      if (vcContent) {
+        let vcDragX = null
+        vcContent.addEventListener('pointerdown', e => {
+          if (e.target.closest('video')) return
+          vcDragX = e.clientX
+          vcContent.setPointerCapture(e.pointerId)
+          vcContent.classList.add('dragging')
+        })
+        vcContent.addEventListener('pointermove', e => {
+          if (vcDragX === null) return
+          if (Math.abs(e.clientX - vcDragX) > 10) e.preventDefault()
+        }, { passive: false })
+        vcContent.addEventListener('pointercancel', () => {
+          vcDragX = null
+          vcContent.classList.remove('dragging')
+        })
+        vcContent.addEventListener('pointerup', e => {
+          if (vcDragX === null) return
+          const dx = e.clientX - vcDragX
+          vcDragX = null
+          vcContent.classList.remove('dragging')
+          if (Math.abs(dx) > 50) {
+            if (dx > 0 && seqIdx < total - 1) goNext()
+            else if (dx < 0 && seqIdx > 0) goPrev()
+          }
+        })
+      }
+    }
+
     function showVersionPicker(folder, item) {
       const hasStory = item.storyboardImg || item.storyboardPdf
+      const hasExtra = item.videoUrl || hasStory
+
+      if (!hasExtra) {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`, item.slug)
+        document.getElementById('backBtn').addEventListener('click', () => renderFolder(folder))
+        return
+      }
+
       const extraBtn = item.videoUrl
-        ? `<button class="version-btn accent" id="vExtra">
-            <strong>כאן יש סרטון</strong>
-            <span>ניסיון ראשון שלי עם AI</span>
-           </button>`
-        : hasStory
-        ? `<button class="version-btn accent" id="vExtra">
+        ? `<button class="version-btn accent" id="vExtra"><strong>כאן יש סרטון</strong></button>`
+        : `<button class="version-btn accent" id="vExtra">
             <strong>סטורי בורד, קצת AI מה יש בזה</strong>
             <span>לראות את זה בתמונות</span>
            </button>`
-        : ''
+
       openModal(item.label, `
+        ${item.intro ? `<p class="modal-intro">${item.intro}</p>` : ''}
         <div class="version-picker">
-          <p>באיזו גרסה תרצה לקרוא?</p>
-          <button class="version-btn solid" id="vShort">
-            <strong>גרסה קצרה ומתחכמת</strong>
-            <span>לאלה שמבינים מהר</span>
-          </button>
-          <button class="version-btn" id="vFull">
+          ${item.insight ? `<p class="modal-intro">${item.insight}</p>` : ''}
+          <button class="version-btn solid" id="vFull">
             <strong>תסריט מלא</strong>
             <span>שוט אחר שוט, כל הפרטים</span>
           </button>
           ${extraBtn}
           <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
-        </div>`)
-      document.getElementById('vShort').addEventListener('click', () => {
-        openModal(item.label,
-          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.shortBody}</div>`)
-        document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
-      })
+        </div>`, item.slug)
+
       document.getElementById('vFull').addEventListener('click', () => {
         openModal(item.label,
           `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`)
         document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
       })
-      if (item.videoUrl || hasStory) {
-        document.getElementById('vExtra').addEventListener('click', () => {
-          let content
-          if (item.videoUrl) {
-            content = `
-              <p style="font-size:0.9rem;color:#555;line-height:1.75;margin-bottom:16px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;">
-                זה ניסיון ראשון שלי עם AI ולקח לי יום להכין את זה, רק דמיינו מה יכל להיות עם תקציב של משרד....
-              </p>
-              <video src="${item.videoUrl}" controls style="width:100%;border-radius:10px;display:block;"></video>`
-          } else {
-            content = item.storyboardImg
-              ? `<img src="${item.storyboardImg}" style="border-radius:8px;" alt="סטורי בורד" />`
-              : `<iframe class="storyboard-wrap" src="${item.storyboardPdf}"></iframe>`
-          }
-          openModal(item.label, `<button class="back-btn" id="backBtn">← חזרה</button>${content}`)
-          document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
-        })
-      }
+      document.getElementById('vExtra').addEventListener('click', () => {
+        let content
+        if (item.videoUrl) {
+          content = `
+            <p class="modal-intro">זה ניסיון ראשון שלי עם AI ולקח לי יום להכין את זה, רק דמיינו מה יכל להיות עם תקציב של משרד....</p>
+            <video src="${item.videoUrl}" controls style="width:100%;border-radius:10px;display:block;"></video>`
+        } else {
+          content = item.storyboardImg
+            ? `<img src="${item.storyboardImg}" style="border-radius:8px;" alt="סטורי בורד" />`
+            : `<iframe class="storyboard-wrap" src="${item.storyboardPdf}"></iframe>`
+        }
+        openModal(item.label, `<button class="back-btn" id="backBtn">← חזרה</button>${content}`)
+        document.getElementById('backBtn').addEventListener('click', () => showVersionPicker(folder, item))
+      })
       document.getElementById('backBtn').addEventListener('click', () => renderFolder(folder))
     }
 
     function showVersionList(folder, item) {
       const introHtml = item.intro
-        ? `<p style="font-size:0.88rem;color:#555;line-height:1.75;margin-bottom:8px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;text-align:right;">${item.intro}</p>`
+        ? `<p class="modal-intro">${item.intro}</p>`
         : ''
       const btns = item.versions.map((v, i) =>
         `<button class="version-btn ${i===0?'solid':''}" data-vidx="${i}">
@@ -1061,15 +1542,15 @@
       openModal(item.label, `
         <div class="version-picker">
           ${introHtml}
-          <p>באיזו גרסה תרצה לקרוא?</p>
+          ${item.insight ? `<p class="modal-intro">${item.insight}</p>` : ''}
           ${btns}
           <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
-        </div>`)
+        </div>`, item.slug)
       modalBody.querySelectorAll('[data-vidx]').forEach(el => {
         el.addEventListener('click', () => {
           const vIdx = parseInt(el.dataset.vidx)
           const v = item.versions[vIdx]
-          if (v.shortBody) { showSubVersionPicker(folder, item, v); return }
+          if (v.shortBody) { showSubVersionPicker(folder, item, v); return } // shortBody exists but picker no longer shows short option
           if (v.printImg && !v.body) {
             openModal(item.label,
               `<button class="back-btn" id="backBtn">← חזרה</button><img src="${v.printImg}" style="border-radius:8px;" alt="פרינט" />`)
@@ -1083,31 +1564,25 @@
     }
 
     function showSubVersionPicker(folder, item, v) {
-      const printBtn = v.printImg
-        ? `<button class="version-btn accent" id="vPrint">
-            <strong>הנה פרינט של זה</strong>
-            <span>לראות את הפרינט</span>
-           </button>`
-        : ''
+      if (!v.printImg) {
+        openModal(item.label,
+          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${v.body}</div>`)
+        document.getElementById('backBtn').addEventListener('click', () => showVersionList(folder, item))
+        return
+      }
       openModal(item.label, `
         <div class="version-picker">
-          <p>מה תרצה לראות?</p>
-          <button class="version-btn solid" id="vShort">
-            <strong>גרסה קצרה</strong>
-            <span>בקצרה ובמתחכמת</span>
-          </button>
-          <button class="version-btn" id="vFull">
-            <strong>גרסה ארוכה</strong>
+          ${v.insight ? `<p class="modal-intro">${v.insight}</p>` : ''}
+          <button class="version-btn solid" id="vFull">
+            <strong>תסריט מלא</strong>
             <span>כל הפרטים, שוט אחר שוט</span>
           </button>
-          ${printBtn}
+          <button class="version-btn accent" id="vPrint">
+            <strong>הנה פרינט של זה</strong>
+            <span>לראות את הפרינט</span>
+          </button>
           <button class="back-btn" id="backBtn" style="margin-top:8px;">← חזרה</button>
         </div>`)
-      document.getElementById('vShort').addEventListener('click', () => {
-        openModal(item.label,
-          `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${v.shortBody}</div>`)
-        document.getElementById('backBtn').addEventListener('click', () => showSubVersionPicker(folder, item, v))
-      })
       document.getElementById('vFull').addEventListener('click', () => {
         openModal(item.label,
           `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${v.body}</div>`)
@@ -1160,26 +1635,107 @@
       }
     }
 
-    function openModal(title, htmlContent) {
+
+    function openModal(title, htmlContent, slug) {
+      document.querySelectorAll('.modal__panel .vc-arrow').forEach(el => el.remove())
+      if (vcKeyHandler) { document.removeEventListener('keydown', vcKeyHandler); vcKeyHandler = null }
       modalTitle.textContent = title
       modalBody.innerHTML = htmlContent
       modal.classList.add('open')
       modal.setAttribute('aria-hidden', 'false')
+      if (slug) history.replaceState(null, '', '#' + slug)
+    }
+
+    let galleryKeyHandler = null
+    let vcKeyHandler = null
+
+    function showGallery(item, backFn) {
+      let idx = 0
+      function render() {
+        const photo = item.gallery[idx]
+        const total = item.gallery.length
+        openModal(item.label, `
+          <button class="back-btn" id="galBack">← חזרה</button>
+          <div class="mgal-title">מוצג בסדר אקראי, נראה לי...</div>
+          <div class="modal-gallery">
+            <button class="mgal-btn" id="galRight">&#8594;</button>
+            <div class="mgal-img-wrap">
+              <img src="${photo.src}" alt="${photo.caption}" class="mgal-img" />
+            </div>
+            <button class="mgal-btn" id="galLeft">&#8592;</button>
+          </div>
+          <div class="mgal-caption">${photo.caption}</div>
+          <div class="mgal-counter">${idx + 1} / ${total}</div>
+        `)
+        document.getElementById('galBack').addEventListener('click', backFn)
+        document.getElementById('galRight').addEventListener('click', () => { idx = (idx - 1 + total) % total; render() })
+        document.getElementById('galLeft').addEventListener('click',  () => { idx = (idx + 1) % total; render() })
+
+        // ── גרירה לגלריה ──
+        const imgWrap = document.querySelector('.mgal-img-wrap')
+        if (imgWrap) {
+          let galDragX = null
+          imgWrap.addEventListener('pointerdown', e => {
+            galDragX = e.clientX
+            imgWrap.setPointerCapture(e.pointerId)
+            imgWrap.classList.add('dragging')
+          })
+          imgWrap.addEventListener('pointermove', e => {
+            if (galDragX === null) return
+            if (Math.abs(e.clientX - galDragX) > 8) e.preventDefault()
+          }, { passive: false })
+          imgWrap.addEventListener('pointercancel', () => {
+            galDragX = null
+            imgWrap.classList.remove('dragging')
+          })
+          imgWrap.addEventListener('pointerup', e => {
+            if (galDragX === null) return
+            const dx = e.clientX - galDragX
+            galDragX = null
+            imgWrap.classList.remove('dragging')
+            if (Math.abs(dx) > 40) {
+              if (dx > 0) { idx = (idx + 1) % total; render() }
+              else { idx = (idx - 1 + total) % total; render() }
+            }
+          })
+        }
+
+        // ── מקלדת לגלריה ──
+        if (galleryKeyHandler) document.removeEventListener('keydown', galleryKeyHandler)
+        galleryKeyHandler = e => {
+          if (e.key === 'ArrowLeft')  { idx = (idx + 1) % total; render() }
+          if (e.key === 'ArrowRight') { idx = (idx - 1 + total) % total; render() }
+        }
+        document.addEventListener('keydown', galleryKeyHandler)
+        document.getElementById('galBack').addEventListener('click', () => {
+          document.removeEventListener('keydown', galleryKeyHandler)
+          galleryKeyHandler = null
+        })
+      }
+      render()
     }
 
     function renderFolder(w) {
+      const introHtml = w.intro
+        ? `<p class="modal-intro">${w.intro}</p>`
+        : ''
       const grid = `<div class="sub-grid">${w.items.map((item, i) => `
         <div class="sub-item" data-folder="${w.title}" data-index="${i}">
           <img src="${item.img}" alt="${item.label}" />
           <div class="sub-item__label">${item.label}</div>
+          ${item.desc ? `<div class="sub-item__desc">${item.desc}</div>` : ''}
         </div>`).join('')}</div>`
-      openModal(w.title, grid)
+      openModal(w.title, introHtml + grid, w.slug)
       modalBody.querySelectorAll('.sub-item').forEach(el => {
         el.addEventListener('click', () => {
           const idx = parseInt(el.dataset.index)
           const item = w.items[idx]
-          if (item.isFolder) {
+          if (item.gallery) {
+            showGallery(item, () => renderFolder(w))
+          } else if (item.isFolder) {
             renderSubFolder(w, item)
+          } else if (item.combinedView) {
+            showFolderCombined(w, combinedSeqIndexFor(w, item))
           } else if (item.shortBody) {
             showVersionPicker(w, item)
           } else if (item.versions) {
@@ -1195,7 +1751,7 @@
 
     function renderSubFolder(parent, folder) {
       const introHtml = folder.intro
-        ? `<p style="font-size:0.88rem;color:#555;line-height:1.75;margin-bottom:16px;padding:14px 16px;background:#f7f6f2;border-radius:10px;border-right:3px solid #c0392b;text-align:right;">${folder.intro}</p>`
+        ? `<p class="modal-intro">${folder.intro}</p>`
         : ''
       const grid = `<div class="sub-grid">${folder.items.map((item, i) => `
         <div class="sub-item" data-index="${i}">
@@ -1209,6 +1765,10 @@
       modalBody.querySelectorAll('.sub-item').forEach(el => {
         el.addEventListener('click', () => {
           const item = folder.items[parseInt(el.dataset.index)]
+          if (item.combinedView) {
+            showFolderCombined(folder, combinedSeqIndexFor(folder, item), () => renderSubFolder(parent, folder))
+            return
+          }
           openModal(item.label,
             `<button class="back-btn" id="backBtn">← חזרה</button><div class="script-body">${item.body}</div>`)
           document.getElementById('backBtn').addEventListener('click', () => renderSubFolder(parent, folder))
@@ -1221,7 +1781,7 @@
       const card = document.createElement('div')
       card.className = 'card'
       card.innerHTML = `
-        <div class="card__tag">${w.tag}</div>
+        ${w.quip ? `<div class="card__quip">${w.quip}</div>` : ''}
         <div class="card__title">${w.title}</div>
         <div class="card__desc">${w.desc}</div>
       `
@@ -1237,18 +1797,180 @@
       container.appendChild(card)
     })
 
+    // ── עבודות נבחרות (קרוסלה צפה) ──
+    const FEATURED_REFS = [
+      { folderTag: 'תסריטים', itemLabel: 'לאומי יאנג' },
+      { folderTag: 'תסריטים', itemLabel: 'פרסומת יכיני שעועית' },
+      { folderTag: 'תסריטים', itemLabel: 'חניה ב-AI' },
+      { folderTag: 'פרינטים', itemLabel: 'DHL' }
+    ]
+    const featuredTrack  = document.getElementById('featuredTrack')
+    const featuredWrap   = document.getElementById('featuredCarousel')
+    const dotsContainer  = document.getElementById('carouselDots')
+    const featuredItems  = []
+    let carouselIndex    = 0
+    const GAP            = 12
+
+    FEATURED_REFS.forEach((ref, i) => {
+      let card
+
+      {
+        const folder = WORKS.find(w => w.tag === ref.folderTag && w.isFolder)
+        if (!folder) return
+        const item = folder.items.find(it => it.label === ref.itemLabel)
+        if (!item) return
+        featuredItems.push({ folder, item })
+        card = document.createElement('div')
+        card.className = 'featured-card' + (i === 0 ? ' active' : '')
+        card.innerHTML = `
+          <img src="${item.img || ''}" alt="${item.label}" />
+          <div class="featured-card__info">
+            <div class="featured-card__name">${item.label}</div>
+            <div class="featured-card__tag">${ref.folderTag}</div>
+          </div>
+        `
+        card.addEventListener('click', () => {
+          if (item.combinedView) showFolderCombined(folder, combinedSeqIndexFor(folder, item))
+          else if (item.shortBody) showVersionPicker(folder, item)
+          else if (item.versions) showVersionList(folder, item)
+          else openModal(item.label, `<div class="script-body">${item.body}</div>`)
+        })
+      }
+
+      featuredTrack.appendChild(card)
+
+      const dot = document.createElement('button')
+      dot.className = 'carousel__dot' + (i === 0 ? ' active' : '')
+      dot.addEventListener('click', () => goTo(i))
+      dotsContainer.appendChild(dot)
+    })
+
+    // ── שכפול כרטיס ראשון/אחרון לקצוות, כדי שהקרוסלה תחליק ברציפות אינסופית ──
+    const realCards = Array.from(featuredTrack.children)
+    const hasClones = realCards.length > 1
+    let trackPos = carouselIndex
+    if (hasClones) {
+      const firstClone = realCards[0].cloneNode(true)
+      const lastClone  = realCards[realCards.length - 1].cloneNode(true)
+      firstClone.classList.remove('active')
+      lastClone.classList.remove('active')
+      featuredTrack.insertBefore(lastClone, realCards[0])
+      featuredTrack.appendChild(firstClone)
+      trackPos = carouselIndex + 1
+    }
+
+    function positionTrack() {
+      const allCards = featuredTrack.children
+      if (!allCards.length) return
+      const cardW  = allCards[0].offsetWidth
+      const wrapW  = featuredWrap.offsetWidth
+      const center = (wrapW - cardW) / 2
+      featuredTrack.style.transform = `translateX(${-center + trackPos * (cardW + GAP)}px)`
+    }
+
+    function jumpInstant(pos) {
+      trackPos = pos
+      featuredTrack.classList.add('no-anim')
+      positionTrack()
+      void featuredTrack.offsetWidth
+      featuredTrack.classList.remove('no-anim')
+    }
+
+    function goTo(idx) {
+      const dots = dotsContainer.querySelectorAll('.carousel__dot')
+      const realCount = featuredItems.length
+      const newIndex = (idx + realCount) % realCount
+      const forwardWrap  = hasClones && carouselIndex === realCount - 1 && newIndex === 0 && idx > carouselIndex
+      const backwardWrap = hasClones && carouselIndex === 0 && newIndex === realCount - 1 && idx < carouselIndex
+
+      realCards[carouselIndex].classList.remove('active')
+      dots[carouselIndex].classList.remove('active')
+
+      if (forwardWrap) {
+        trackPos = realCount + 1
+        positionTrack()
+        featuredTrack.addEventListener('transitionend', function onEnd() {
+          featuredTrack.removeEventListener('transitionend', onEnd)
+          jumpInstant(1)
+        }, { once: true })
+      } else if (backwardWrap) {
+        trackPos = 0
+        positionTrack()
+        featuredTrack.addEventListener('transitionend', function onEnd() {
+          featuredTrack.removeEventListener('transitionend', onEnd)
+          jumpInstant(realCount)
+        }, { once: true })
+      } else {
+        trackPos = hasClones ? newIndex + 1 : newIndex
+        positionTrack()
+      }
+
+      carouselIndex = newIndex
+      realCards[carouselIndex].classList.add('active')
+      dots[carouselIndex].classList.add('active')
+    }
+
+    document.getElementById('carouselPrev').addEventListener('click', () => goTo(carouselIndex - 1))
+    document.getElementById('carouselNext').addEventListener('click', () => goTo(carouselIndex + 1))
+
+    window.addEventListener('resize', positionTrack)
+
+    // ── גרירה לקרוסלת עבודות נבחרות ──
+    let carouselDragX = null
+
+    featuredWrap.addEventListener('pointerdown', e => {
+      carouselDragX = e.clientX
+      featuredWrap.setPointerCapture(e.pointerId)
+      featuredWrap.classList.add('dragging')
+    })
+    featuredWrap.addEventListener('pointermove', e => {
+      if (carouselDragX === null) return
+      if (Math.abs(e.clientX - carouselDragX) > 10) e.preventDefault()
+    }, { passive: false })
+    featuredWrap.addEventListener('pointercancel', () => {
+      carouselDragX = null
+      featuredWrap.classList.remove('dragging')
+    })
+    featuredWrap.addEventListener('pointerup', e => {
+      if (carouselDragX === null) return
+      const dx = e.clientX - carouselDragX
+      carouselDragX = null
+      featuredWrap.classList.remove('dragging')
+      if (Math.abs(dx) > 40) {
+        if (dx > 0) goTo(carouselIndex + 1)
+        else goTo(carouselIndex - 1)
+      } else if (Math.abs(dx) < 10) {
+        const fi = featuredItems[carouselIndex]
+        if (!fi) return
+        const { folder, item } = fi
+        if (item.combinedView) showFolderCombined(folder, combinedSeqIndexFor(folder, item))
+        else if (item.shortBody) showVersionPicker(folder, item)
+        else if (item.versions) showVersionList(folder, item)
+        else openModal(item.label, '<div class="script-body">' + item.body + '</div>')
+      }
+    })
+
+    positionTrack()
+
+
+    function closeModal() {
+      modal.classList.remove('open')
+      modal.setAttribute('aria-hidden', 'true')
+      if (galleryKeyHandler) { document.removeEventListener('keydown', galleryKeyHandler); galleryKeyHandler = null }
+      if (vcKeyHandler) { document.removeEventListener('keydown', vcKeyHandler); vcKeyHandler = null }
+      document.querySelectorAll('.modal__panel .vc-arrow').forEach(el => el.remove())
+      history.replaceState(null, '', window.location.pathname)
+    }
+
     document.querySelectorAll('[data-close]').forEach(el =>
-      el.addEventListener('click', () => {
-        modal.classList.remove('open')
-        modal.setAttribute('aria-hidden', 'true')
-      })
+      el.addEventListener('click', closeModal)
     )
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        modal.classList.remove('open')
-        modal.setAttribute('aria-hidden', 'true')
-      }
+      if (e.key === 'Escape') { closeModal(); return }
+      if (modal.classList.contains('open')) return
+      if (e.key === 'ArrowLeft')  goTo(carouselIndex + 1)
+      if (e.key === 'ArrowRight') goTo(carouselIndex - 1)
     })
 
     // ── מתג שפה (בדיחה) ──
@@ -1308,6 +2030,31 @@
       })
     })
     langObserver.observe(document.body, { childList: true, subtree: true })
+
+    // ── Deep link: פתיחה ישירה לפי URL hash ──
+    const SLUG_INDEX = {}
+    WORKS.forEach(w => {
+      if (w.slug) SLUG_INDEX[w.slug] = { type: 'folder', work: w }
+      if (w.items) w.items.forEach(item => {
+        if (item.slug) SLUG_INDEX[item.slug] = { type: 'item', work: w, item }
+      })
+    })
+
+    const initHash = location.hash.slice(1)
+    if (initHash && SLUG_INDEX[initHash]) {
+      const entry = SLUG_INDEX[initHash]
+      if (entry.type === 'campaign') {
+        showCampaign(entry.work)
+      } else if (entry.type === 'folder') {
+        renderFolder(entry.work)
+      } else {
+        const { work, item } = entry
+        if (item.combinedView) showFolderCombined(work, combinedSeqIndexFor(work, item))
+        else if (item.shortBody)   showVersionPicker(work, item)
+        else if (item.versions) showVersionList(work, item)
+        else openModal(item.label, `<div class="script-body">${item.body}</div>`, item.slug)
+      }
+    }
   </script>
 </body>
 </html>
